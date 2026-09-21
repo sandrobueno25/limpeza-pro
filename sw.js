@@ -1,67 +1,56 @@
-const CACHE_NAME = "limpeza-pro-v11-offline";
+  const CACHE_NAME = "limpeza-pro-v12";
 
 const ARQUIVOS = [
-  "./",
-  "./index.html",
-  "./manifest.json",
-  "./icons/icon-192.png",
-  "./icons/icon-512.png"
+    "./",
+    "./index.html",
+    "./manifest.json"
 ];
 
 self.addEventListener("install", event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(ARQUIVOS);
-    })
-  );
+    self.skipWaiting();
 
-  self.skipWaiting();
+    event.waitUntil(
+        caches.open(CACHE_NAME).then(cache => {
+            return cache.addAll(ARQUIVOS);
+        })
+    );
 });
 
 self.addEventListener("activate", event => {
-  event.waitUntil(
-    caches.keys().then(chaves => {
-      return Promise.all(
-        chaves
-          .filter(chave => chave !== CACHE_NAME)
-          .map(chave => caches.delete(chave))
-      );
-    })
-  );
-
-  self.clients.claim();
+    event.waitUntil(
+        caches.keys().then(chaves => {
+            return Promise.all(
+                chaves
+                    .filter(chave => chave !== CACHE_NAME)
+                    .map(chave => caches.delete(chave))
+            );
+        }).then(() => {
+            return self.clients.claim();
+        })
+    );
 });
 
 self.addEventListener("fetch", event => {
 
-  event.respondWith(
+    if (event.request.method !== "GET") {
+        return;
+    }
 
-    caches.match(event.request).then(resposta => {
+    event.respondWith(
+        fetch(event.request)
+            .then(resposta => {
 
-      if (resposta) {
-        return resposta;
-      }
+                const copia = resposta.clone();
 
-      return fetch(event.request)
-        .then(resposta => {
+                caches.open(CACHE_NAME).then(cache => {
+                    cache.put(event.request, copia);
+                });
 
-          const copia = resposta.clone();
-
-          caches.open(CACHE_NAME).then(cache => {
-            cache.put(event.request, copia);
-          });
-
-          return resposta;
-
-        })
-        .catch(() => {
-
-          return caches.match("./index.html");
-
-        });
-
-    })
-
-  );
+                return resposta;
+            })
+            .catch(() => {
+                return caches.match(event.request);
+            })
+    );
 
 });
