@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <meta name="theme-color" content="#0f172a">
-
 <link rel="manifest" href="manifest.json">
 
-<title>Orçamento Limpeza PRO</title>
+<title>Orçamento Limpeza PRO V14</title>
 
 <style>
-
 *{
     box-sizing:border-box;
 }
@@ -199,6 +193,7 @@ button{
     display:flex;
     gap:7px;
     flex-wrap:wrap;
+    align-items:center;
 }
 
 .tableWrap{
@@ -259,6 +254,20 @@ th{
     color:#9a3412;
 }
 
+.badge.gray{
+    background:#e5e7eb;
+    color:#374151;
+}
+
+.statusSelect{
+    min-width:155px;
+    padding:8px;
+    border-radius:8px;
+    border:1px solid #cbd5e1;
+    font-size:12px;
+    font-weight:bold;
+}
+
 .empty{
     text-align:center;
     color:#64748b;
@@ -278,8 +287,22 @@ th{
     border-left:5px solid #16a34a;
 }
 
+.overdue{
+    border-left:5px solid #dc2626;
+}
+
 .plan{
     border:2px solid #e2e8f0;
+}
+
+.plan h3{
+    margin-top:0;
+}
+
+hr{
+    border:0;
+    border-top:1px solid #e2e8f0;
+    margin:18px 0;
 }
 
 .quick{
@@ -307,7 +330,7 @@ th{
 }
 
 .modalBox{
-    max-width:650px;
+    max-width:700px;
     margin:30px auto;
     background:white;
     border-radius:15px;
@@ -332,156 +355,66 @@ th{
     border-bottom:1px solid #e2e8f0;
 }
 
-/* ORÇAMENTO PROFISSIONAL */
-
-.orcamentoDocumento{
-    max-width:800px;
-    margin:15px auto;
+.quotePreview{
     background:white;
-    border-radius:12px;
-    padding:35px;
-    box-shadow:0 2px 12px rgba(0,0,0,.08);
+    border:1px solid #cbd5e1;
+    padding:25px;
+    border-radius:8px;
+    max-width:800px;
+    margin:auto;
 }
 
-.orcCabecalho{
+.quoteHeader{
     display:flex;
     justify-content:space-between;
     gap:20px;
-    border-bottom:3px solid #0f172a;
-    padding-bottom:20px;
-    margin-bottom:25px;
+    border-bottom:2px solid #0f172a;
+    padding-bottom:15px;
+    margin-bottom:20px;
 }
 
-.orcEmpresa h1{
-    margin:0 0 5px;
-    font-size:28px;
+.quoteTitle{
+    font-size:25px;
+    font-weight:bold;
 }
 
-.orcEmpresa p{
-    margin:3px 0;
-    color:#64748b;
-}
-
-.orcNumero{
+.quoteNumber{
     text-align:right;
+    font-size:13px;
 }
 
-.orcNumero strong{
-    display:block;
-    font-size:22px;
-}
-
-.orcInfo{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
-    margin-bottom:25px;
-}
-
-.orcBox{
-    border:1px solid #e2e8f0;
-    border-radius:10px;
+.quoteClient{
+    background:#f8fafc;
     padding:15px;
+    border-radius:8px;
+    margin-bottom:20px;
 }
 
-.orcBox h3{
-    margin:0 0 8px;
-    font-size:13px;
-    color:#64748b;
-    text-transform:uppercase;
-}
-
-.orcServico{
-    border:1px solid #e2e8f0;
-    border-radius:10px;
-    overflow:hidden;
-    margin:20px 0;
-}
-
-.orcServico table{
-    min-width:0;
-}
-
-.orcTotal{
-    margin-left:auto;
-    max-width:350px;
-    border:2px solid #0f172a;
-    border-radius:10px;
-    padding:18px;
+.quoteTotal{
+    margin-top:20px;
+    padding:15px;
+    background:#f8fafc;
+    border-radius:8px;
     text-align:right;
+    font-size:22px;
+    font-weight:bold;
 }
 
-.orcTotal span{
-    display:block;
-    color:#64748b;
-    font-size:13px;
-}
-
-.orcTotal strong{
-    display:block;
-    font-size:30px;
-    margin-top:5px;
-}
-
-.orcObservacoes{
-    margin-top:25px;
-}
-
-.orcRodape{
-    border-top:1px solid #e2e8f0;
+.quoteFooter{
     margin-top:30px;
+    border-top:1px solid #e2e8f0;
     padding-top:15px;
-    color:#64748b;
     font-size:12px;
-    text-align:center;
+    color:#64748b;
 }
 
-.orcAcoes{
-    max-width:800px;
-    margin:15px auto;
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-}
-
-/* IMPRESSÃO */
-
-@media print{
-
-    body{
-        background:white;
-    }
-
-    body *{
-        visibility:hidden;
-    }
-
-    #modalOrcamento,
-    #modalOrcamento *{
-        visibility:visible;
-    }
-
-    #modalOrcamento{
-        position:absolute;
-        left:0;
-        top:0;
-        width:100%;
-        background:white;
-        padding:0;
-    }
-
-    .orcamentoDocumento{
-        max-width:none;
-        margin:0;
-        padding:25px;
-        box-shadow:none;
-        border-radius:0;
-    }
-
-    .orcAcoes{
-        display:none !important;
-    }
-
+.notice{
+    padding:12px;
+    border-radius:9px;
+    background:#eff6ff;
+    color:#1e40af;
+    font-size:13px;
+    margin-bottom:12px;
 }
 
 @media(max-width:600px){
@@ -492,214 +425,170 @@ th{
 
     table{
         font-size:12px;
-        min-width:650px;
+        min-width:720px;
+    }
+
+    .tableWrap{
+        overflow-x:auto;
     }
 
     .modalBox{
         margin:10px auto;
     }
 
-    .orcamentoDocumento{
-        padding:20px;
+    .quotePreview{
+        padding:15px;
     }
 
-    .orcCabecalho{
-        display:block;
+    .quoteHeader{
+        flex-direction:column;
     }
 
-    .orcNumero{
+    .quoteNumber{
         text-align:left;
-        margin-top:15px;
     }
-
-    .orcInfo{
-        grid-template-columns:1fr;
-    }
-
-    .orcTotal{
-        max-width:none;
-    }
-
 }
 
-</style>
+@media print{
 
+    body{
+        background:white;
+    }
+
+    header,
+    nav,
+    main,
+    .modal,
+    .noPrint{
+        display:none !important;
+    }
+
+    #impressaoOrcamento{
+        display:block !important;
+        position:static !important;
+        background:white !important;
+        padding:0 !important;
+    }
+
+    .quotePreview{
+        border:0;
+        max-width:none;
+        box-shadow:none;
+    }
+}
+</style>
 </head>
 
 <body>
 
 <header>
-
-<h1 id="tituloEmpresa">
-Orçamento Limpeza PRO
-</h1>
-
-<p>
-V14.1 Offline • Gestão de serviços e clientes
-</p>
-
+    <h1 id="tituloEmpresa">Orçamento Limpeza PRO</h1>
+    <p>V14 Offline • Gestão de serviços, clientes e orçamentos</p>
 </header>
 
+<nav id="menuPrincipal">
 
-<nav>
+    <button class="active" data-page="dashboard">Dashboard</button>
 
-<button class="active"
-onclick="abrirPagina('dashboard',this)">
-Dashboard
-</button>
+    <button data-page="clientes">Clientes</button>
 
-<button
-onclick="abrirPagina('clientes',this)">
-Clientes
-</button>
+    <button data-page="solicitacoes">Solicitações</button>
 
-<button
-onclick="abrirPagina('solicitacoes',this)">
-Solicitações
-</button>
+    <button data-page="orcamentos">Orçamentos</button>
 
-<button
-onclick="abrirPagina('orcamentos',this)">
-Orçamentos
-</button>
+    <button data-page="agenda">Agenda</button>
 
-<button
-onclick="abrirPagina('agenda',this)">
-Agenda
-</button>
+    <button data-page="planos">Planos</button>
 
-<button
-onclick="abrirPagina('planos',this)">
-Planos
-</button>
+    <button data-page="backup">Backup</button>
 
-<button
-onclick="abrirPagina('backup',this)">
-Backup
-</button>
-
-<button
-onclick="abrirPagina('config',this)">
-Configurações
-</button>
+    <button data-page="config">Configurações</button>
 
 </nav>
 
-
 <main>
-
 
 <!-- DASHBOARD -->
 
 <section id="dashboard" class="page active">
 
-<div class="card">
+    <div class="card">
 
-<div class="actions">
+        <div class="actions">
 
-<div>
+            <div style="flex:1">
 
-<h2>Dashboard</h2>
+                <h2>Dashboard</h2>
 
-<div class="muted">
-Visão geral da empresa
-</div>
+                <div class="muted">
+                    Visão geral da empresa
+                </div>
 
-</div>
+            </div>
 
-<button
-class="btn primary"
-onclick="novaSolicitacao()">
+            <button
+                class="btn primary"
+                id="btnNovaSolicitacaoDashboard">
 
-+ Nova solicitação
+                + Nova solicitação
 
-</button>
+            </button>
 
-</div>
+        </div>
 
-</div>
+    </div>
 
+    <div id="kpis" class="grid"></div>
 
-<div
-id="kpis"
-class="grid">
-</div>
+    <div class="card">
 
+        <h3>Fluxo dos serviços</h3>
 
-<div class="card">
+        <div id="fluxoStatus" class="grid"></div>
 
-<h3>
-Fluxo dos serviços
-</h3>
+    </div>
 
-<div
-id="fluxoStatus"
-class="grid">
-</div>
+    <div class="card">
 
-</div>
+        <h3>Financeiro</h3>
 
+        <div id="financeiro" class="grid"></div>
 
-<div class="card">
+    </div>
 
-<h3>
-Financeiro
-</h3>
+    <div class="card">
 
-<div
-id="financeiro"
-class="grid">
-</div>
+        <h3>Ações rápidas</h3>
 
-</div>
+        <div class="quick">
 
+            <button class="btn primary" id="quickNova">
+                📋 Nova solicitação
+            </button>
 
-<div class="card">
+            <button class="btn info" id="quickClientes">
+                👤 Clientes
+            </button>
 
-<h3>
-Ações rápidas
-</h3>
+            <button class="btn success" id="quickAgenda">
+                📅 Agenda
+            </button>
 
-<div class="quick">
+            <button class="btn warning" id="quickOrcamentos">
+                💰 Orçamentos
+            </button>
 
-<button
-class="btn primary"
-onclick="novaSolicitacao()">
-📋 Nova solicitação
-</button>
+        </div>
 
-<button
-class="btn info"
-onclick="abrirPagina('clientes',document.querySelectorAll('nav button')[1])">
-👤 Clientes
-</button>
+    </div>
 
-<button
-class="btn success"
-onclick="abrirPagina('agenda',document.querySelectorAll('nav button')[4])">
-📅 Agenda
-</button>
+    <div class="card">
 
-<button
-class="btn warning"
-onclick="abrirPagina('orcamentos',document.querySelectorAll('nav button')[3])">
-💰 Orçamentos
-</button>
+        <h3>Atividade recente</h3>
 
-</div>
+        <div id="atividade"></div>
 
-</div>
-
-
-<div class="card">
-
-<h3>
-Atividade recente
-</h3>
-
-<div id="atividade"></div>
-
-</div>
+    </div>
 
 </section>
 
@@ -708,107 +597,74 @@ Atividade recente
 
 <section id="clientes" class="page">
 
-<div class="actions">
+    <div class="actions">
 
-<h2>
-Clientes
-</h2>
+        <h2 style="flex:1">Clientes</h2>
 
-<button
-class="btn primary"
-onclick="novoCliente()">
-+ Novo cliente
-</button>
+        <button class="btn primary" id="btnNovoCliente">
+            + Novo cliente
+        </button>
 
-</div>
+    </div>
 
+    <div class="card">
 
-<div class="card">
+        <form id="formCliente">
 
-<form
-id="formCliente"
-onsubmit="salvarCliente(event)">
+            <input type="hidden" id="clienteId">
 
-<input
-type="hidden"
-id="clienteId">
+            <div class="formgrid">
 
+                <div>
+                    <label>Nome *</label>
+                    <input id="clienteNome" required>
+                </div>
 
-<div class="formgrid">
+                <div>
+                    <label>WhatsApp *</label>
+                    <input id="clienteWhats" required>
+                </div>
 
-<div>
+                <div>
+                    <label>E-mail</label>
+                    <input id="clienteEmail" type="email">
+                </div>
 
-<label>Nome *</label>
+                <div>
+                    <label>Endereço</label>
+                    <input id="clienteEndereco">
+                </div>
 
-<input
-id="clienteNome"
-required>
+            </div>
 
-</div>
+            <br>
 
+            <div class="actions">
 
-<div>
+                <button class="btn primary">
+                    Salvar cliente
+                </button>
 
-<label>WhatsApp *</label>
+                <button
+                    type="button"
+                    class="btn secondary"
+                    id="btnLimparCliente">
 
-<input
-id="clienteWhats"
-required>
+                    Limpar
 
-</div>
+                </button>
 
+            </div>
 
-<div>
+        </form>
 
-<label>E-mail</label>
+    </div>
 
-<input
-id="clienteEmail">
+    <div class="card">
 
-</div>
+        <div id="listaClientes"></div>
 
-
-<div>
-
-<label>Endereço</label>
-
-<input
-id="clienteEndereco">
-
-</div>
-
-</div>
-
-
-<br>
-
-
-<div class="actions">
-
-<button
-class="btn primary">
-Salvar cliente
-</button>
-
-<button
-type="button"
-class="btn secondary"
-onclick="limparFormCliente()">
-Limpar
-</button>
-
-</div>
-
-</form>
-
-</div>
-
-
-<div class="card">
-
-<div id="listaClientes"></div>
-
-</div>
+    </div>
 
 </section>
 
@@ -817,26 +673,25 @@ Limpar
 
 <section id="solicitacoes" class="page">
 
-<div class="actions">
+    <div class="actions">
 
-<h2>
-Solicitações
-</h2>
+        <h2 style="flex:1">Solicitações</h2>
 
-<button
-class="btn primary"
-onclick="novaSolicitacao()">
-+ Nova
-</button>
+        <button class="btn primary" id="btnNovaSolicitacao">
+            + Nova
+        </button>
 
-</div>
+    </div>
 
+    <div class="notice">
+        Altere o status diretamente na tabela. A alteração é salva automaticamente.
+    </div>
 
-<div class="card">
+    <div class="card">
 
-<div id="listaSolicitacoes"></div>
+        <div id="listaSolicitacoes"></div>
 
-</div>
+    </div>
 
 </section>
 
@@ -845,20 +700,21 @@ onclick="novaSolicitacao()">
 
 <section id="orcamentos" class="page">
 
-<div class="actions">
+    <div class="actions">
 
-<h2>
-Orçamentos
-</h2>
+        <h2 style="flex:1">Orçamentos</h2>
 
-</div>
+        <button class="btn primary" id="btnNovoOrcamento">
+            + Novo orçamento
+        </button>
 
+    </div>
 
-<div class="card">
+    <div class="card">
 
-<div id="listaOrcamentos"></div>
+        <div id="listaOrcamentos"></div>
 
-</div>
+    </div>
 
 </section>
 
@@ -867,26 +723,21 @@ Orçamentos
 
 <section id="agenda" class="page">
 
-<div class="actions">
+    <div class="actions">
 
-<h2>
-Agenda
-</h2>
+        <h2 style="flex:1">Agenda</h2>
 
-<button
-class="btn primary"
-onclick="novaSolicitacao()">
-+ Novo serviço
-</button>
+        <button class="btn primary" id="btnNovoServico">
+            + Novo serviço
+        </button>
 
-</div>
+    </div>
 
+    <div class="card">
 
-<div class="card">
+        <div id="listaAgenda"></div>
 
-<div id="listaAgenda"></div>
-
-</div>
+    </div>
 
 </section>
 
@@ -895,69 +746,55 @@ onclick="novaSolicitacao()">
 
 <section id="planos" class="page">
 
-<h2>
-Planos
-</h2>
+    <h2>Planos</h2>
 
+    <div class="grid">
 
-<div class="grid">
+        <div class="card plan">
 
-<div class="card plan">
+            <h3>Teste</h3>
 
-<h3>Teste</h3>
+            <p>
+                Para experimentar o sistema.
+            </p>
 
-<p>
-Para experimentar o sistema.
-</p>
+            <strong>Grátis</strong>
 
-<strong>
-Grátis
-</strong>
+        </div>
 
-</div>
+        <div class="card plan">
 
+            <h3>Profissional</h3>
 
-<div class="card plan">
+            <p>
+                Gestão completa para pequenas empresas.
+            </p>
 
-<h3>Profissional</h3>
+            <strong>R$ 49,90/mês</strong>
 
-<p>
-Gestão completa para pequenas empresas.
-</p>
+        </div>
 
-<strong>
-R$ 49,90/mês
-</strong>
+        <div class="card plan">
 
-</div>
+            <h3>Premium</h3>
 
+            <p>
+                Mais recursos para empresas em crescimento.
+            </p>
 
-<div class="card plan">
+            <strong>R$ 99,90/mês</strong>
 
-<h3>Premium</h3>
+        </div>
 
-<p>
-Mais recursos para empresas em crescimento.
-</p>
+    </div>
 
-<strong>
-R$ 99,90/mês
-</strong>
+    <div class="card">
 
-</div>
+        <strong>Plano atual:</strong>
 
-</div>
+        <span id="planoAtual"></span>
 
-
-<div class="card">
-
-<strong>
-Plano atual:
-</strong>
-
-<span id="planoAtual"></span>
-
-</div>
+    </div>
 
 </section>
 
@@ -966,47 +803,33 @@ Plano atual:
 
 <section id="backup" class="page">
 
-<h2>
-Backup e restauração
-</h2>
+    <h2>Backup e restauração</h2>
 
+    <div class="card">
 
-<div class="card">
+        <p class="muted">
+            Faça backups regularmente para proteger os dados armazenados no aparelho.
+        </p>
 
-<p class="muted">
+        <div class="actions">
 
-Faça backups regularmente para proteger
-os dados armazenados no aparelho.
+            <button class="btn primary" id="btnExportarBackup">
+                Exportar backup
+            </button>
 
-</p>
+            <button class="btn secondary" id="btnRestaurarBackup">
+                Restaurar backup
+            </button>
 
+            <input
+                id="arquivoBackup"
+                type="file"
+                accept=".json"
+                style="display:none">
 
-<div class="actions">
+        </div>
 
-<button
-class="btn primary"
-onclick="exportarBackup()">
-Exportar backup
-</button>
-
-
-<button
-class="btn secondary"
-onclick="document.getElementById('arquivoBackup').click()">
-Restaurar backup
-</button>
-
-
-<input
-id="arquivoBackup"
-type="file"
-accept=".json"
-style="display:none"
-onchange="importarBackup(event)">
-
-</div>
-
-</div>
+    </div>
 
 </section>
 
@@ -1015,57 +838,39 @@ onchange="importarBackup(event)">
 
 <section id="config" class="page">
 
-<h2>
-Configurações
-</h2>
+    <h2>Configurações</h2>
 
+    <div class="card">
 
-<div class="card">
+        <label>Nome da empresa</label>
 
-<label>
-Nome da empresa
-</label>
+        <input id="empresaNome">
 
-<input
-id="empresaNome">
+        <label>WhatsApp da empresa</label>
 
+        <input id="empresaWhats">
 
-<label>
-WhatsApp da empresa
-</label>
+        <label>Cidade</label>
 
-<input
-id="empresaWhats">
+        <input id="empresaCidade">
 
+        <label>Texto do rodapé do orçamento</label>
 
-<label>
-Cidade
-</label>
+        <textarea id="empresaRodape"></textarea>
 
-<input
-id="empresaCidade">
+        <br>
 
+        <button class="btn primary" id="btnSalvarConfiguracoes">
+            Salvar configurações
+        </button>
 
-<br>
+        <hr>
 
+        <button class="btn danger" id="btnApagarDados">
+            Apagar todos os dados
+        </button>
 
-<button
-class="btn primary"
-onclick="salvarConfiguracoes()">
-Salvar configurações
-</button>
-
-
-<hr>
-
-
-<button
-class="btn danger"
-onclick="apagarDados()">
-Apagar todos os dados
-</button>
-
-</div>
+    </div>
 
 </section>
 
@@ -1074,2399 +879,3115 @@ Apagar todos os dados
 
 <!-- MODAL CLIENTE -->
 
-<div
-id="modalCliente"
-class="modal">
+<div id="modalCliente" class="modal">
 
-<div class="modalBox">
+    <div class="modalBox">
 
-<div class="actions">
+        <div class="actions">
 
-<h2>
-Histórico do cliente
-</h2>
+            <h2 style="flex:1">
+                Histórico do cliente
+            </h2>
 
-<button
-class="btn secondary"
-onclick="fecharModal('modalCliente')">
-Fechar
-</button>
+            <button class="btn secondary" data-close="modalCliente">
+                Fechar
+            </button>
 
-</div>
+        </div>
 
-<div id="conteudoCliente"></div>
+        <div id="conteudoCliente"></div>
 
-</div>
+    </div>
 
 </div>
 
 
 <!-- MODAL SOLICITAÇÃO -->
 
-<div
-id="modalSolicitacao"
-class="modal">
+<div id="modalSolicitacao" class="modal">
 
-<div class="modalBox">
+    <div class="modalBox">
 
-<div class="actions">
+        <div class="actions">
 
-<h2>
-Editar solicitação
-</h2>
+            <h2 style="flex:1">
+                Editar solicitação
+            </h2>
 
-<button
-class="btn secondary"
-onclick="fecharModal('modalSolicitacao')">
-Fechar
-</button>
+            <button class="btn secondary" data-close="modalSolicitacao">
+                Fechar
+            </button>
 
-</div>
+        </div>
 
+        <form id="formEditarSolicitacao">
 
-<form
-onsubmit="salvarEdicaoSolicitacao(event)">
+            <input type="hidden" id="editSolicitacaoId">
 
-<input
-type="hidden"
-id="editSolicitacaoId">
+            <label>Nome do cliente</label>
+            <input id="editNome" required>
 
+            <label>WhatsApp</label>
+            <input id="editWhats" required>
 
-<label>
-Nome do cliente
-</label>
+            <label>Serviço</label>
+            <input id="editServico" required>
 
-<input
-id="editNome"
-required>
+            <label>Valor</label>
+            <input id="editValor" type="number" step="0.01" min="0">
 
+            <label>Data</label>
+            <input id="editData" type="date">
 
-<label>
-WhatsApp
-</label>
+            <label>Horário</label>
+            <input id="editHora" type="time">
 
-<input
-id="editWhats"
-required>
+            <label>Status</label>
+            <select id="editStatus"></select>
 
+            <br>
 
-<label>
-Serviço
-</label>
+            <button class="btn primary">
+                Salvar alterações
+            </button>
 
-<input
-id="editServico"
-required>
+        </form>
 
-
-<label>
-Valor
-</label>
-
-<input
-id="editValor"
-type="number"
-step="0.01"
-min="0">
-
-
-<label>
-Data
-</label>
-
-<input
-id="editData"
-type="date">
-
-
-<label>
-Horário
-</label>
-
-<input
-id="editHora"
-type="time">
-
-
-<label>
-Status
-</label>
-
-<select
-id="editStatus">
-</select>
-
-
-<br>
-
-
-<button
-class="btn primary">
-Salvar alterações
-</button>
-
-</form>
-
-</div>
+    </div>
 
 </div>
 
 
-<!-- MODAL ORÇAMENTO PROFISSIONAL -->
+<!-- MODAL ORÇAMENTO -->
 
-<div
-id="modalOrcamento"
-class="modal">
+<div id="modalOrcamento" class="modal">
 
-<div class="orcAcoes">
+    <div class="modalBox">
 
-<button
-class="btn secondary"
-onclick="fecharModal('modalOrcamento')">
-← Voltar
-</button>
+        <div class="actions">
 
-<button
-class="btn primary"
-onclick="window.print()">
-🖨️ Imprimir / Salvar PDF
-</button>
+            <h2 style="flex:1">
+                Novo orçamento
+            </h2>
 
-<button
-class="btn whatsapp"
-onclick="enviarOrcamentoWhatsApp()">
-📱 Enviar pelo WhatsApp
-</button>
+            <button class="btn secondary" data-close="modalOrcamento">
+                Fechar
+            </button>
+
+        </div>
+
+        <form id="formOrcamento">
+
+            <input type="hidden" id="orcamentoId">
+
+            <label>Cliente *</label>
+            <select id="orcCliente" required></select>
+
+            <label>Serviço *</label>
+            <input id="orcServico" required>
+
+            <label>Descrição</label>
+            <textarea id="orcDescricao"></textarea>
+
+            <div class="formgrid">
+
+                <div>
+
+                    <label>Valor *</label>
+
+                    <input
+                        id="orcValor"
+                        type="number"
+                        min="0"
+                        step="0.01"
+                        required>
+
+                </div>
+
+                <div>
+
+                    <label>Data do serviço</label>
+
+                    <input
+                        id="orcData"
+                        type="date">
+
+                </div>
+
+                <div>
+
+                    <label>Horário</label>
+
+                    <input
+                        id="orcHora"
+                        type="time">
+
+                </div>
+
+                <div>
+
+                    <label>Validade do orçamento</label>
+
+                    <input
+                        id="orcValidade"
+                        type="date">
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <button class="btn primary">
+                Salvar orçamento
+            </button>
+
+        </form>
+
+    </div>
 
 </div>
 
 
-<div
-id="documentoOrcamento"
-class="orcamentoDocumento">
+<!-- MODAL VISUALIZAR ORÇAMENTO -->
+
+<div id="modalVisualizarOrcamento" class="modal">
+
+    <div class="modalBox">
+
+        <div class="actions noPrint">
+
+            <h2 style="flex:1">
+                Orçamento
+            </h2>
+
+            <button
+                class="btn secondary"
+                data-close="modalVisualizarOrcamento">
+
+                Fechar
+
+            </button>
+
+        </div>
+
+        <div id="orcamentoVisualizacao"></div>
+
+        <br>
+
+        <div class="actions noPrint">
+
+            <button
+                class="btn primary"
+                id="btnImprimirOrcamento">
+
+                🖨️ Imprimir / PDF
+
+            </button>
+
+            <button
+                class="btn whatsapp"
+                id="btnWhatsOrcamento">
+
+                WhatsApp
+
+            </button>
+
+        </div>
+
+    </div>
 
 </div>
 
-</div>
+
+<!-- ÁREA DE IMPRESSÃO -->
+
+<div id="impressaoOrcamento" style="display:none"></div>
 
 
 <script>
 
-/* ==================================================
-BANCO
-================================================== */
+/* =====================================================
+   CONFIGURAÇÃO
+===================================================== */
 
-const CHAVE =
-"limpezaProOfflineV11";
+const CHAVE = "limpezaProOfflineV11";
+
+const STATUS = [
+    "Pendente",
+    "Aceito",
+    "Agendado",
+    "Em andamento",
+    "Concluído",
+    "Aguardando pagamento",
+    "Pago",
+    "Cancelado",
+    "Recusado"
+];
 
 
-let banco =
-JSON.parse(
-localStorage.getItem(CHAVE)
-)
-||
-{
+/* =====================================================
+   BANCO PADRÃO
+===================================================== */
 
-empresa:{
-nome:"SM Limpezas",
-whatsapp:"",
-cidade:"Águaí - SP",
-plano:"Profissional"
-},
+const BANCO_PADRAO = {
 
-clientes:[],
-solicitacoes:[],
-orcamentos:[],
-agenda:[]
+    empresa:{
+        nome:"SM Limpezas",
+        whatsapp:"",
+        cidade:"Águaí - SP",
+        plano:"Profissional",
+        rodape:"Obrigado pela preferência. Este orçamento está sujeito à disponibilidade de agenda."
+    },
+
+    clientes:[],
+    solicitacoes:[],
+    orcamentos:[],
+    agenda:[]
 
 };
 
 
-/* ==================================================
-STATUS
-================================================== */
+/* =====================================================
+   CARREGAR BANCO COM SEGURANÇA
+===================================================== */
 
-const STATUS = [
+function carregarBanco(){
 
-"Pendente",
-"Aceito",
-"Agendado",
-"Em andamento",
-"Concluído",
-"Aguardando pagamento",
-"Pago",
-"Cancelado",
-"Recusado"
+    try{
 
-];
+        const salvo = localStorage.getItem(CHAVE);
+
+        if(!salvo){
+
+            return structuredClone
+                ? structuredClone(BANCO_PADRAO)
+                : JSON.parse(JSON.stringify(BANCO_PADRAO));
+
+        }
+
+        const dados = JSON.parse(salvo);
+
+        if(!dados || typeof dados !== "object"){
+
+            throw new Error("Banco inválido");
+
+        }
+
+        const bancoSeguro = {
+
+            ...BANCO_PADRAO,
+
+            ...dados,
+
+            empresa:{
+                ...BANCO_PADRAO.empresa,
+                ...(dados.empresa || {})
+            },
+
+            clientes:Array.isArray(dados.clientes)
+                ? dados.clientes
+                : [],
+
+            solicitacoes:Array.isArray(dados.solicitacoes)
+                ? dados.solicitacoes
+                : [],
+
+            orcamentos:Array.isArray(dados.orcamentos)
+                ? dados.orcamentos
+                : [],
+
+            agenda:Array.isArray(dados.agenda)
+                ? dados.agenda
+                : []
+
+        };
+
+        return bancoSeguro;
+
+    }
+    catch(erro){
+
+        console.error("Erro ao carregar banco:",erro);
+
+        alert(
+            "O banco de dados apresentou um problema. " +
+            "Os dados atuais não serão apagados automaticamente."
+        );
+
+        return JSON.parse(
+            JSON.stringify(BANCO_PADRAO)
+        );
+
+    }
+
+}
 
 
-/* ==================================================
-VARIÁVEL ORÇAMENTO ATUAL
-================================================== */
-
-let orcamentoAtualId = null;
+let banco = carregarBanco();
 
 
-/* ==================================================
-SALVAR
-================================================== */
+/* =====================================================
+   UTILIDADES
+===================================================== */
 
 function salvarBanco(){
 
-localStorage.setItem(
-CHAVE,
-JSON.stringify(banco)
-);
+    try{
 
-renderizarTudo();
+        localStorage.setItem(
+            CHAVE,
+            JSON.stringify(banco)
+        );
 
-}
+        renderizarTudo();
 
+        return true;
 
-/* ==================================================
-NAVEGAÇÃO
-================================================== */
+    }
+    catch(erro){
 
-function abrirPagina(id,botao){
+        console.error(erro);
 
-document
-.querySelectorAll(".page")
-.forEach(
-p=>p.classList.remove("active")
-);
+        alert(
+            "Não foi possível salvar os dados. " +
+            "Verifique o armazenamento do navegador."
+        );
 
-const pagina =
-document.getElementById(id);
+        return false;
 
-if(pagina){
-pagina.classList.add("active");
-}
-
-document
-.querySelectorAll("nav button")
-.forEach(
-b=>b.classList.remove("active")
-);
-
-if(botao){
-botao.classList.add("active");
-}
-
-renderizarTudo();
+    }
 
 }
 
-
-/* ==================================================
-DINHEIRO
-================================================== */
-
-function dinheiro(valor){
-
-return Number(valor||0)
-.toLocaleString(
-"pt-BR",
-{
-style:"currency",
-currency:"BRL"
-}
-);
-
-}
-
-
-/* ==================================================
-ID
-================================================== */
 
 function idNovo(prefixo){
 
-return prefixo+
-"-"+
-Date.now()+
-"-"+
-Math.random()
-.toString(36)
-.substring(2,7);
+    return prefixo +
+        "-" +
+        Date.now() +
+        "-" +
+        Math.random()
+            .toString(36)
+            .substring(2,8);
 
 }
 
 
-/* ==================================================
-DATA
-================================================== */
+function dinheiro(valor){
 
-function dataBR(data){
-
-if(!data){
-return "-";
-}
-
-if(data.includes("-")){
-
-const partes =
-data.split("-");
-
-return partes[2]+
-"/"+
-partes[1]+
-"/"+
-partes[0];
-
-}
-
-return data;
+    return Number(valor || 0)
+        .toLocaleString(
+            "pt-BR",
+            {
+                style:"currency",
+                currency:"BRL"
+            }
+        );
 
 }
 
 
 function hoje(){
 
-return new Date()
-.toISOString()
-.substring(0,10);
+    const d = new Date();
+
+    const ano = d.getFullYear();
+
+    const mes = String(
+        d.getMonth()+1
+    ).padStart(2,"0");
+
+    const dia = String(
+        d.getDate()
+    ).padStart(2,"0");
+
+    return ano+"-"+mes+"-"+dia;
 
 }
 
 
-/* ==================================================
-BADGE
-================================================== */
+function dataBR(data){
 
-function badge(status){
+    if(!data){
+        return "-";
+    }
 
-let classe="";
+    if(
+        typeof data === "string" &&
+        /^\d{4}-\d{2}-\d{2}$/.test(data)
+    ){
 
-if(
-status==="Pago" ||
-status==="Concluído"
-){
-classe="ok";
-}
-else if(
-status==="Cancelado" ||
-status==="Recusado"
-){
-classe="bad";
-}
-else if(
-status==="Aceito" ||
-status==="Agendado"
-){
-classe="blue";
-}
-else if(
-status==="Em andamento"
-){
-classe="purple";
-}
-else if(
-status==="Aguardando pagamento"
-){
-classe="orange";
-}
+        const p = data.split("-");
 
-return `
-<span class="badge ${classe}">
-${status||"Pendente"}
-</span>
-`;
+        return p[2]+"/"+p[1]+"/"+p[0];
+
+    }
+
+    return data;
 
 }
 
-
-/* ==================================================
-SELECT STATUS
-================================================== */
-
-function selectStatus(status,funcao,id){
-
-return `
-<select
-class="statusSelect"
-onchange="${funcao}('${id}',this.value)">
-
-${
-STATUS.map(
-s=>`
-
-<option
-value="${s}"
-${s===status?"selected":""}>
-
-${s}
-
-</option>
-
-`
-).join("")
-}
-
-</select>
-`;
-
-}
-
-
-/* ==================================================
-WHATSAPP
-================================================== */
 
 function telefoneWhats(numero){
 
-return String(numero||"")
-.replace(/\D/g,"");
+    return String(numero || "")
+        .replace(/\D/g,"");
 
 }
 
 
-function abrirWhatsApp(numero,nome){
+/* =====================================================
+   HTML SEGURO
+===================================================== */
 
-const telefone =
-telefoneWhats(numero);
+function escaparHTML(valor){
 
-if(!telefone){
-
-alert(
-"Este cliente não possui WhatsApp cadastrado."
-);
-
-return;
-
-}
-
-const mensagem =
-encodeURIComponent(
-"Olá "+
-(nome||"")+
-", tudo bem? Aqui é da "+
-(banco.empresa.nome||"nossa empresa")+
-"."
-);
-
-window.open(
-"https://wa.me/55"+
-telefone+
-"?text="+
-mensagem,
-"_blank"
-);
+    return String(valor ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 
 }
 
 
-/* ==================================================
-CLIENTES
-================================================== */
+/* =====================================================
+   STATUS
+===================================================== */
 
-function novoCliente(){
+function classeBadge(status){
 
-limparFormCliente();
+    if(
+        status==="Pago" ||
+        status==="Concluído"
+    ){
+        return "ok";
+    }
+
+    if(
+        status==="Cancelado" ||
+        status==="Recusado"
+    ){
+        return "bad";
+    }
+
+    if(
+        status==="Aceito" ||
+        status==="Agendado"
+    ){
+        return "blue";
+    }
+
+    if(status==="Em andamento"){
+        return "purple";
+    }
+
+    if(status==="Aguardando pagamento"){
+        return "orange";
+    }
+
+    return "";
+
+}
+
+
+function badge(status){
+
+    return `
+        <span class="badge ${classeBadge(status)}">
+            ${escaparHTML(status || "Pendente")}
+        </span>
+    `;
+
+}
+
+
+function montarStatusSelect(status){
+
+    const select = document.createElement("select");
+
+    select.className = "statusSelect";
+
+    STATUS.forEach(item=>{
+
+        const option =
+            document.createElement("option");
+
+        option.value = item;
+        option.textContent = item;
+
+        if(item === status){
+            option.selected = true;
+        }
+
+        select.appendChild(option);
+
+    });
+
+    return select;
+
+}
+
+
+/* =====================================================
+   NAVEGAÇÃO
+===================================================== */
+
+function abrirPagina(id){
+
+    document
+        .querySelectorAll(".page")
+        .forEach(
+            p=>p.classList.remove("active")
+        );
+
+    const pagina =
+        document.getElementById(id);
+
+    if(pagina){
+        pagina.classList.add("active");
+    }
+
+    document
+        .querySelectorAll("nav button")
+        .forEach(
+            b=>b.classList.remove("active")
+        );
+
+    const botao =
+        document.querySelector(
+            `nav button[data-page="${id}"]`
+        );
+
+    if(botao){
+        botao.classList.add("active");
+    }
+
+    renderizarTudo();
+
+}
+
 
 document
-.getElementById("clienteNome")
-.focus();
+    .querySelectorAll("nav button[data-page]")
+    .forEach(botao=>{
 
-}
+        botao.addEventListener(
+            "click",
+            ()=>abrirPagina(botao.dataset.page)
+        );
 
+    });
+
+
+/* =====================================================
+   CLIENTES
+===================================================== */
 
 function limparFormCliente(){
 
-document
-.getElementById("formCliente")
-.reset();
+    document
+        .getElementById("formCliente")
+        .reset();
 
-document
-.getElementById("clienteId")
-.value="";
+    document
+        .getElementById("clienteId")
+        .value="";
+
+}
+
+
+function novoCliente(){
+
+    limparFormCliente();
+
+    abrirPagina("clientes");
+
+    document
+        .getElementById("clienteNome")
+        .focus();
 
 }
 
 
 function salvarCliente(event){
 
-event.preventDefault();
+    event.preventDefault();
 
-const id =
-document.getElementById(
-"clienteId"
-).value;
+    const id =
+        document.getElementById("clienteId").value;
 
-const dados={
+    const dados = {
 
-nome:
-document.getElementById(
-"clienteNome"
-).value.trim(),
+        nome:
+            document
+            .getElementById("clienteNome")
+            .value.trim(),
 
-whatsapp:
-document.getElementById(
-"clienteWhats"
-).value.trim(),
+        whatsapp:
+            document
+            .getElementById("clienteWhats")
+            .value.trim(),
 
-email:
-document.getElementById(
-"clienteEmail"
-).value.trim(),
+        email:
+            document
+            .getElementById("clienteEmail")
+            .value.trim(),
 
-endereco:
-document.getElementById(
-"clienteEndereco"
-).value.trim()
+        endereco:
+            document
+            .getElementById("clienteEndereco")
+            .value.trim()
 
-};
+    };
 
-if(id){
+    if(!dados.nome || !dados.whatsapp){
 
-const cliente =
-banco.clientes.find(
-c=>c.id===id
-);
+        alert(
+            "Preencha nome e WhatsApp."
+        );
 
-if(cliente){
-Object.assign(
-cliente,
-dados
-);
+        return;
+
+    }
+
+    if(id){
+
+        const cliente =
+            banco.clientes.find(
+                c=>c.id===id
+            );
+
+        if(cliente){
+
+            Object.assign(
+                cliente,
+                dados
+            );
+
+        }
+
+    }
+    else{
+
+        banco.clientes.push({
+
+            id:idNovo("CLI"),
+
+            ...dados,
+
+            criadoEm:
+                new Date().toISOString()
+
+        });
+
+    }
+
+    limparFormCliente();
+
+    salvarBanco();
+
+    alert(
+        "Cliente salvo com sucesso."
+    );
+
 }
 
-}
-else{
 
-banco.clientes.push({
-
-id:idNovo("CLI"),
-
-...dados,
-
-criadoEm:
-new Date().toISOString()
-
-});
-
-}
-
-limparFormCliente();
-
-salvarBanco();
-
-alert(
-"Cliente salvo com sucesso."
-);
-
-}
+document
+    .getElementById("formCliente")
+    .addEventListener(
+        "submit",
+        salvarCliente
+    );
 
 
 function editarCliente(id){
 
-const c =
-banco.clientes.find(
-x=>x.id===id
-);
+    const c =
+        banco.clientes.find(
+            x=>x.id===id
+        );
 
-if(!c){
-return;
-}
+    if(!c){
+        return;
+    }
 
-document
-.getElementById("clienteId")
-.value=c.id;
+    document
+        .getElementById("clienteId")
+        .value=c.id;
 
-document
-.getElementById("clienteNome")
-.value=c.nome||"";
+    document
+        .getElementById("clienteNome")
+        .value=c.nome || "";
 
-document
-.getElementById("clienteWhats")
-.value=c.whatsapp||"";
+    document
+        .getElementById("clienteWhats")
+        .value=c.whatsapp || "";
 
-document
-.getElementById("clienteEmail")
-.value=c.email||"";
+    document
+        .getElementById("clienteEmail")
+        .value=c.email || "";
 
-document
-.getElementById("clienteEndereco")
-.value=c.endereco||"";
+    document
+        .getElementById("clienteEndereco")
+        .value=c.endereco || "";
 
-abrirPagina(
-"clientes",
-document.querySelectorAll(
-"nav button"
-)[1]
-);
+    abrirPagina("clientes");
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 
 }
 
 
 function excluirCliente(id){
 
-if(
-!confirm(
-"Excluir este cliente?"
-)
-){
-return;
+    const cliente =
+        banco.clientes.find(
+            c=>c.id===id
+        );
+
+    if(!cliente){
+        return;
+    }
+
+    if(
+        !confirm(
+            "Excluir o cliente " +
+            cliente.nome +
+            "?"
+        )
+    ){
+        return;
+    }
+
+    banco.clientes =
+        banco.clientes.filter(
+            c=>c.id!==id
+        );
+
+    salvarBanco();
+
 }
 
-banco.clientes =
-banco.clientes.filter(
-c=>c.id!==id
-);
 
-salvarBanco();
+function abrirWhatsApp(numero,nome,mensagemExtra=""){
+
+    const telefone =
+        telefoneWhats(numero);
+
+    if(!telefone){
+
+        alert(
+            "Este cliente não possui WhatsApp cadastrado."
+        );
+
+        return;
+
+    }
+
+    let mensagem =
+        "Olá " +
+        (nome || "") +
+        ", tudo bem? Aqui é da " +
+        (banco.empresa.nome || "nossa empresa") +
+        ".";
+
+    if(mensagemExtra){
+        mensagem += "\n\n" + mensagemExtra;
+    }
+
+    const url =
+        "https://wa.me/55" +
+        telefone +
+        "?text=" +
+        encodeURIComponent(mensagem);
+
+    window.open(
+        url,
+        "_blank"
+    );
 
 }
 
 
-/* ==================================================
-HISTÓRICO
-================================================== */
+/* =====================================================
+   HISTÓRICO CLIENTE
+===================================================== */
 
 function abrirHistoricoCliente(id){
 
-const c =
-banco.clientes.find(
-x=>x.id===id
-);
+    const c =
+        banco.clientes.find(
+            x=>x.id===id
+        );
 
-if(!c){
-return;
-}
+    if(!c){
+        return;
+    }
 
-const registros =
-banco.orcamentos.filter(
-o=>o.whatsapp===c.whatsapp
-);
+    const registros =
+        banco.orcamentos.filter(
+            o=>o.whatsapp===c.whatsapp
+        );
 
-let html=`
+    let html = `
 
-<div class="statBox">
+        <div class="statBox">
 
-<strong>
-${c.nome}
-</strong>
+            <strong>
+                ${escaparHTML(c.nome)}
+            </strong>
 
-<div class="muted">
-${c.whatsapp||"Sem WhatsApp"}
-</div>
+            <div class="muted">
+                ${escaparHTML(c.whatsapp || "Sem WhatsApp")}
+            </div>
 
-</div>
+        </div>
 
-<br>
-`;
+        <br>
 
-if(!registros.length){
+    `;
 
-html+=`
+    if(!registros.length){
 
-<div class="empty">
-Nenhum serviço registrado para este cliente.
-</div>
+        html += `
 
-`;
+            <div class="empty">
+                Nenhum orçamento registrado para este cliente.
+            </div>
 
-}
-else{
+        `;
 
-html+=registros.map(
-o=>`
+    }
+    else{
 
-<div class="historyItem">
+        html += registros.map(o=>`
 
-<strong>
-${o.servico}
-</strong>
+            <div class="historyItem">
 
-<br>
+                <strong>
+                    ${escaparHTML(o.servico)}
+                </strong>
 
-${dataBR(o.data)}
-${o.hora?" • "+o.hora:""}
+                <br>
 
-<br>
+                ${dataBR(o.data)}
+                ${o.hora
+                    ? " • " + escaparHTML(o.hora)
+                    : ""}
 
-<strong>
-${dinheiro(o.valor)}
-</strong>
+                <br>
 
-<br>
+                <strong>
+                    ${dinheiro(o.valor)}
+                </strong>
 
-${badge(o.status)}
+                <br>
 
-</div>
+                ${badge(o.status)}
 
-`
-).join("");
+            </div>
 
-}
+        `).join("");
 
-document
-.getElementById(
-"conteudoCliente"
-)
-.innerHTML=html;
+    }
 
-abrirModal(
-"modalCliente"
-);
+    document
+        .getElementById("conteudoCliente")
+        .innerHTML=html;
+
+    abrirModal("modalCliente");
 
 }
 
 
-/* ==================================================
-NOVA SOLICITAÇÃO
-================================================== */
+/* =====================================================
+   SOLICITAÇÕES
+===================================================== */
 
 function novaSolicitacao(){
 
-const nome =
-prompt(
-"Nome do cliente:"
-);
+    const nome =
+        prompt("Nome do cliente:");
 
-if(!nome){
-return;
-}
+    if(!nome){
+        return;
+    }
 
-const whatsapp =
-prompt(
-"WhatsApp:"
-);
+    const whatsapp =
+        prompt("WhatsApp:");
 
-if(!whatsapp){
-return;
-}
+    if(!whatsapp){
+        return;
+    }
 
-const servico =
-prompt(
-"Serviço solicitado:",
-"Limpeza residencial"
-);
+    const servico =
+        prompt(
+            "Serviço solicitado:",
+            "Limpeza residencial"
+        );
 
-if(!servico){
-return;
-}
+    if(!servico){
+        return;
+    }
 
-const valor =
-prompt(
-"Valor do orçamento (R$):",
-"0"
-);
+    const valor =
+        prompt(
+            "Valor do orçamento (R$):",
+            "0"
+        );
 
-const data =
-prompt(
-"Data desejada (AAAA-MM-DD):",
-""
-);
+    const data =
+        prompt(
+            "Data desejada (AAAA-MM-DD):",
+            hoje()
+        );
 
-const hora =
-prompt(
-"Horário:",
-"08:00"
-);
+    const hora =
+        prompt(
+            "Horário:",
+            "08:00"
+        );
 
-banco.solicitacoes.unshift({
+    const solicitacao = {
 
-id:idNovo("SOL"),
+        id:idNovo("SOL"),
 
-criadoEm:
-new Date().toISOString(),
+        criadoEm:
+            new Date().toISOString(),
 
-nome:nome,
+        nome:nome.trim(),
 
-whatsapp:whatsapp,
+        whatsapp:whatsapp.trim(),
 
-servico:servico,
+        servico:servico.trim(),
 
-valor:
-Number(
-String(valor)
-.replace(",",".")
-)||0,
+        valor:
+            Number(
+                String(valor || "")
+                    .replace(",",".")
+            ) || 0,
 
-data:data,
+        data:data || "",
 
-hora:hora,
+        hora:hora || "",
 
-status:"Pendente"
+        status:"Pendente"
 
-});
+    };
 
-let cliente =
-banco.clientes.find(
-c=>c.whatsapp===whatsapp
-);
+    banco.solicitacoes.unshift(
+        solicitacao
+    );
 
-if(!cliente){
+    const cliente =
+        banco.clientes.find(
+            c=>
+                telefoneWhats(c.whatsapp) ===
+                telefoneWhats(whatsapp)
+        );
 
-banco.clientes.push({
+    if(!cliente){
 
-id:idNovo("CLI"),
+        banco.clientes.push({
 
-nome:nome,
+            id:idNovo("CLI"),
 
-whatsapp:whatsapp,
+            nome:nome.trim(),
 
-email:"",
+            whatsapp:whatsapp.trim(),
 
-endereco:"",
+            email:"",
 
-criadoEm:
-new Date().toISOString()
+            endereco:"",
 
-});
+            criadoEm:
+                new Date().toISOString()
 
-}
+        });
 
-salvarBanco();
+    }
 
-abrirPagina(
-"solicitacoes",
-document.querySelectorAll(
-"nav button"
-)[2]
-);
+    salvarBanco();
+
+    abrirPagina("solicitacoes");
 
 }
 
 
-/* ==================================================
-CONFIRMAR
-================================================== */
+function alterarStatusSolicitacao(
+    id,
+    novoStatus
+){
 
-function confirmarSolicitacao(id){
+    const s =
+        banco.solicitacoes.find(
+            x=>x.id===id
+        );
 
-const s =
-banco.solicitacoes.find(
-x=>x.id===id
-);
+    if(!s){
+        return;
+    }
 
-if(!s){
-return;
-}
+    s.status=novoStatus;
 
-let valor =
-prompt(
-"Valor confirmado:",
-s.valor||0
-);
+    if(
+        novoStatus!=="Pendente" &&
+        novoStatus!=="Recusado" &&
+        novoStatus!=="Cancelado"
+    ){
 
-let data =
-prompt(
-"Data confirmada (AAAA-MM-DD):",
-s.data||""
-);
+        criarOuAtualizarRelacionados(s);
 
-if(!data){
-return;
-}
+    }
 
-let hora =
-prompt(
-"Horário:",
-s.hora||"08:00"
-);
+    sincronizarRelacionados(
+        s.id,
+        novoStatus
+    );
 
-s.status="Agendado";
-
-s.valor=
-Number(
-String(valor)
-.replace(",",".")
-)||0;
-
-s.data=data;
-
-s.hora=hora;
-
-criarOuAtualizarRelacionados(s);
-
-salvarBanco();
+    salvarBanco();
 
 }
 
 
-/* ==================================================
-RELACIONADOS
-================================================== */
+function sincronizarRelacionados(
+    solicitacaoId,
+    status
+){
+
+    const o =
+        banco.orcamentos.find(
+            x=>x.solicitacaoId===solicitacaoId
+        );
+
+    if(o){
+        o.status=status;
+    }
+
+    const a =
+        banco.agenda.find(
+            x=>x.solicitacaoId===solicitacaoId
+        );
+
+    if(a){
+        a.status=status;
+    }
+
+}
+
 
 function criarOuAtualizarRelacionados(s){
 
-let o =
-banco.orcamentos.find(
-x=>x.solicitacaoId===s.id
-);
+    let o =
+        banco.orcamentos.find(
+            x=>x.solicitacaoId===s.id
+        );
 
-if(!o){
+    if(!o){
 
-o={
+        o={
 
-id:idNovo("ORC"),
+            id:idNovo("ORC"),
 
-solicitacaoId:s.id,
+            solicitacaoId:s.id,
 
-cliente:s.nome,
+            cliente:s.nome,
 
-whatsapp:s.whatsapp,
+            whatsapp:s.whatsapp,
 
-servico:s.servico,
+            servico:s.servico,
 
-valor:s.valor,
+            descricao:"",
 
-data:s.data,
+            valor:s.valor,
 
-hora:s.hora,
+            data:s.data,
 
-status:s.status,
+            hora:s.hora,
 
-observacoes:"",
+            validade:"",
 
-validade:7,
+            status:s.status,
 
-criadoEm:
-new Date().toISOString()
+            criadoEm:
+                new Date().toISOString()
 
-};
+        };
 
-banco.orcamentos.unshift(o);
+        banco.orcamentos.unshift(o);
 
-}
-else{
+    }
+    else{
 
-o.cliente=s.nome;
-o.whatsapp=s.whatsapp;
-o.servico=s.servico;
-o.valor=s.valor;
-o.data=s.data;
-o.hora=s.hora;
-o.status=s.status;
+        Object.assign(
+            o,
+            {
+                cliente:s.nome,
+                whatsapp:s.whatsapp,
+                servico:s.servico,
+                valor:s.valor,
+                data:s.data,
+                hora:s.hora,
+                status:s.status
+            }
+        );
 
-if(o.validade===undefined){
-o.validade=7;
-}
+    }
 
-}
+    let a =
+        banco.agenda.find(
+            x=>x.solicitacaoId===s.id
+        );
 
-let a =
-banco.agenda.find(
-x=>x.solicitacaoId===s.id
-);
+    if(!a){
 
-if(!a){
+        banco.agenda.unshift({
 
-banco.agenda.unshift({
+            id:idNovo("AGE"),
 
-id:idNovo("AGE"),
+            solicitacaoId:s.id,
 
-solicitacaoId:s.id,
+            cliente:s.nome,
 
-cliente:s.nome,
+            whatsapp:s.whatsapp,
 
-whatsapp:s.whatsapp,
+            servico:s.servico,
 
-servico:s.servico,
+            valor:s.valor,
 
-valor:s.valor,
+            data:s.data,
 
-data:s.data,
+            hora:s.hora,
 
-hora:s.hora,
+            status:s.status
 
-status:s.status
+        });
 
-});
+    }
+    else{
 
-}
-else{
+        Object.assign(
+            a,
+            {
+                cliente:s.nome,
+                whatsapp:s.whatsapp,
+                servico:s.servico,
+                valor:s.valor,
+                data:s.data,
+                hora:s.hora,
+                status:s.status
+            }
+        );
 
-a.cliente=s.nome;
-a.whatsapp=s.whatsapp;
-a.servico=s.servico;
-a.valor=s.valor;
-a.data=s.data;
-a.hora=s.hora;
-a.status=s.status;
-
-}
-
-}
-
-
-/* ==================================================
-ALTERAR STATUS SOLICITAÇÃO
-================================================== */
-
-function alterarStatusSolicitacao(id,novoStatus){
-
-const s =
-banco.solicitacoes.find(
-x=>x.id===id
-);
-
-if(!s){
-return;
-}
-
-s.status=novoStatus;
-
-if(
-novoStatus!=="Pendente" &&
-novoStatus!=="Recusado" &&
-novoStatus!=="Cancelado"
-){
-
-criarOuAtualizarRelacionados(s);
-
-}
-
-const o =
-banco.orcamentos.find(
-x=>x.solicitacaoId===id
-);
-
-if(o){
-o.status=novoStatus;
-}
-
-const a =
-banco.agenda.find(
-x=>x.solicitacaoId===id
-);
-
-if(a){
-a.status=novoStatus;
-}
-
-salvarBanco();
+    }
 
 }
 
 
-/* ==================================================
-EDITAR SOLICITAÇÃO
-================================================== */
+/* =====================================================
+   EDITAR SOLICITAÇÃO
+===================================================== */
 
 function editarSolicitacao(id){
 
-const s =
-banco.solicitacoes.find(
-x=>x.id===id
-);
+    const s =
+        banco.solicitacoes.find(
+            x=>x.id===id
+        );
 
-if(!s){
-return;
-}
+    if(!s){
+        return;
+    }
 
-document
-.getElementById(
-"editSolicitacaoId"
-).value=s.id;
+    document
+        .getElementById("editSolicitacaoId")
+        .value=s.id;
 
-document
-.getElementById(
-"editNome"
-).value=s.nome||"";
+    document
+        .getElementById("editNome")
+        .value=s.nome || "";
 
-document
-.getElementById(
-"editWhats"
-).value=s.whatsapp||"";
+    document
+        .getElementById("editWhats")
+        .value=s.whatsapp || "";
 
-document
-.getElementById(
-"editServico"
-).value=s.servico||"";
+    document
+        .getElementById("editServico")
+        .value=s.servico || "";
 
-document
-.getElementById(
-"editValor"
-).value=s.valor||0;
+    document
+        .getElementById("editValor")
+        .value=s.valor || 0;
 
-document
-.getElementById(
-"editData"
-).value=s.data||"";
+    document
+        .getElementById("editData")
+        .value=s.data || "";
 
-document
-.getElementById(
-"editHora"
-).value=s.hora||"";
+    document
+        .getElementById("editHora")
+        .value=s.hora || "";
 
-document
-.getElementById(
-"editStatus"
-).innerHTML=
-STATUS.map(
-x=>`
+    preencherStatus(
+        document.getElementById("editStatus"),
+        s.status
+    );
 
-<option
-value="${x}"
-${x===s.status?"selected":""}>
-${x}
-</option>
-
-`
-).join("");
-
-abrirModal(
-"modalSolicitacao"
-);
+    abrirModal(
+        "modalSolicitacao"
+    );
 
 }
 
-
-/* ==================================================
-SALVAR EDIÇÃO
-================================================== */
 
 function salvarEdicaoSolicitacao(event){
 
-event.preventDefault();
+    event.preventDefault();
 
-const id =
+    const id =
+        document
+        .getElementById("editSolicitacaoId")
+        .value;
+
+    const s =
+        banco.solicitacoes.find(
+            x=>x.id===id
+        );
+
+    if(!s){
+        return;
+    }
+
+    s.nome =
+        document
+        .getElementById("editNome")
+        .value.trim();
+
+    s.whatsapp =
+        document
+        .getElementById("editWhats")
+        .value.trim();
+
+    s.servico =
+        document
+        .getElementById("editServico")
+        .value.trim();
+
+    s.valor =
+        Number(
+            document
+            .getElementById("editValor")
+            .value
+        ) || 0;
+
+    s.data =
+        document
+        .getElementById("editData")
+        .value;
+
+    s.hora =
+        document
+        .getElementById("editHora")
+        .value;
+
+    s.status =
+        document
+        .getElementById("editStatus")
+        .value;
+
+    if(
+        s.status!=="Pendente" &&
+        s.status!=="Recusado" &&
+        s.status!=="Cancelado"
+    ){
+
+        criarOuAtualizarRelacionados(s);
+
+    }
+
+    sincronizarRelacionados(
+        s.id,
+        s.status
+    );
+
+    const cliente =
+        banco.clientes.find(
+            c=>
+                telefoneWhats(c.whatsapp) ===
+                telefoneWhats(s.whatsapp)
+        );
+
+    if(!cliente){
+
+        banco.clientes.push({
+
+            id:idNovo("CLI"),
+
+            nome:s.nome,
+
+            whatsapp:s.whatsapp,
+
+            email:"",
+
+            endereco:"",
+
+            criadoEm:
+                new Date().toISOString()
+
+        });
+
+    }
+
+    fecharModal(
+        "modalSolicitacao"
+    );
+
+    salvarBanco();
+
+    alert(
+        "Solicitação atualizada."
+    );
+
+}
+
+
 document
-.getElementById(
-"editSolicitacaoId"
-)
-.value;
+    .getElementById("formEditarSolicitacao")
+    .addEventListener(
+        "submit",
+        salvarEdicaoSolicitacao
+    );
 
-const s =
-banco.solicitacoes.find(
-x=>x.id===id
-);
-
-if(!s){
-return;
-}
-
-s.nome=
-document.getElementById(
-"editNome"
-).value;
-
-s.whatsapp=
-document.getElementById(
-"editWhats"
-).value;
-
-s.servico=
-document.getElementById(
-"editServico"
-).value;
-
-s.valor=
-Number(
-document.getElementById(
-"editValor"
-).value
-)||0;
-
-s.data=
-document.getElementById(
-"editData"
-).value;
-
-s.hora=
-document.getElementById(
-"editHora"
-).value;
-
-s.status=
-document.getElementById(
-"editStatus"
-).value;
-
-if(
-s.status!=="Pendente" &&
-s.status!=="Recusado" &&
-s.status!=="Cancelado"
-){
-
-criarOuAtualizarRelacionados(s);
-
-}
-
-const cliente =
-banco.clientes.find(
-c=>c.whatsapp===s.whatsapp
-);
-
-if(!cliente){
-
-banco.clientes.push({
-
-id:idNovo("CLI"),
-
-nome:s.nome,
-
-whatsapp:s.whatsapp,
-
-email:"",
-
-endereco:"",
-
-criadoEm:
-new Date().toISOString()
-
-});
-
-}
-
-fecharModal(
-"modalSolicitacao"
-);
-
-salvarBanco();
-
-alert(
-"Solicitação atualizada."
-);
-
-}
-
-
-/* ==================================================
-EXCLUIR SOLICITAÇÃO
-================================================== */
 
 function excluirSolicitacao(id){
 
-if(
-!confirm(
-"Excluir esta solicitação?"
-)
+    const s =
+        banco.solicitacoes.find(
+            x=>x.id===id
+        );
+
+    if(!s){
+        return;
+    }
+
+    if(
+        !confirm(
+            "Excluir esta solicitação e seus registros relacionados?"
+        )
+    ){
+        return;
+    }
+
+    banco.solicitacoes =
+        banco.solicitacoes.filter(
+            x=>x.id!==id
+        );
+
+    banco.orcamentos =
+        banco.orcamentos.filter(
+            x=>x.solicitacaoId!==id
+        );
+
+    banco.agenda =
+        banco.agenda.filter(
+            x=>x.solicitacaoId!==id
+        );
+
+    salvarBanco();
+
+}
+
+
+/* =====================================================
+   ORÇAMENTOS
+===================================================== */
+
+function preencherClientesOrcamento(){
+
+    const select =
+        document.getElementById("orcCliente");
+
+    select.innerHTML="";
+
+    if(!banco.clientes.length){
+
+        const option =
+            document.createElement("option");
+
+        option.value="";
+        option.textContent=
+            "Nenhum cliente cadastrado";
+
+        select.appendChild(option);
+
+        return;
+
+    }
+
+    banco.clientes.forEach(c=>{
+
+        const option =
+            document.createElement("option");
+
+        option.value=c.id;
+
+        option.textContent =
+            c.nome +
+            " • " +
+            c.whatsapp;
+
+        select.appendChild(option);
+
+    });
+
+}
+
+
+function novoOrcamento(){
+
+    document
+        .getElementById("formOrcamento")
+        .reset();
+
+    document
+        .getElementById("orcamentoId")
+        .value="";
+
+    preencherClientesOrcamento();
+
+    if(!banco.clientes.length){
+
+        alert(
+            "Cadastre primeiro um cliente."
+        );
+
+        abrirPagina("clientes");
+
+        return;
+
+    }
+
+    abrirModal(
+        "modalOrcamento"
+    );
+
+}
+
+
+document
+    .getElementById("formOrcamento")
+    .addEventListener(
+        "submit",
+        salvarOrcamento
+    );
+
+
+function salvarOrcamento(event){
+
+    event.preventDefault();
+
+    const id =
+        document
+        .getElementById("orcamentoId")
+        .value;
+
+    const clienteId =
+        document
+        .getElementById("orcCliente")
+        .value;
+
+    const cliente =
+        banco.clientes.find(
+            c=>c.id===clienteId
+        );
+
+    if(!cliente){
+
+        alert(
+            "Selecione um cliente."
+        );
+
+        return;
+
+    }
+
+    const dados={
+
+        cliente:cliente.nome,
+
+        whatsapp:cliente.whatsapp,
+
+        servico:
+            document
+            .getElementById("orcServico")
+            .value.trim(),
+
+        descricao:
+            document
+            .getElementById("orcDescricao")
+            .value.trim(),
+
+        valor:
+            Number(
+                document
+                .getElementById("orcValor")
+                .value
+            ) || 0,
+
+        data:
+            document
+            .getElementById("orcData")
+            .value,
+
+        hora:
+            document
+            .getElementById("orcHora")
+            .value,
+
+        validade:
+            document
+            .getElementById("orcValidade")
+            .value,
+
+        status:"Pendente",
+
+        clienteId:cliente.id
+
+    };
+
+    if(!dados.servico){
+
+        alert(
+            "Informe o serviço."
+        );
+
+        return;
+
+    }
+
+    if(id){
+
+        const o =
+            banco.orcamentos.find(
+                x=>x.id===id
+            );
+
+        if(o){
+
+            Object.assign(
+                o,
+                dados
+            );
+
+            if(o.solicitacaoId){
+
+                const s =
+                    banco.solicitacoes.find(
+                        x=>x.id===o.solicitacaoId
+                    );
+
+                if(s){
+
+                    s.nome=dados.cliente;
+                    s.whatsapp=dados.whatsapp;
+                    s.servico=dados.servico;
+                    s.valor=dados.valor;
+                    s.data=dados.data;
+                    s.hora=dados.hora;
+
+                }
+
+            }
+
+        }
+
+    }
+    else{
+
+        banco.orcamentos.unshift({
+
+            id:idNovo("ORC"),
+
+            ...dados,
+
+            criadoEm:
+                new Date().toISOString()
+
+        });
+
+    }
+
+    fecharModal(
+        "modalOrcamento"
+    );
+
+    salvarBanco();
+
+    alert(
+        "Orçamento salvo com sucesso."
+    );
+
+}
+
+
+function alterarStatusOrcamento(
+    id,
+    status
 ){
-return;
-}
 
-banco.solicitacoes =
-banco.solicitacoes.filter(
-x=>x.id!==id
-);
+    const o =
+        banco.orcamentos.find(
+            x=>x.id===id
+        );
 
-salvarBanco();
+    if(!o){
+        return;
+    }
 
-}
+    o.status=status;
 
+    if(o.solicitacaoId){
 
-/* ==================================================
-STATUS ORÇAMENTO
-================================================== */
+        const s =
+            banco.solicitacoes.find(
+                x=>x.id===o.solicitacaoId
+            );
 
-function alterarStatusOrcamento(id,novoStatus){
+        if(s){
+            s.status=status;
+        }
 
-const o =
-banco.orcamentos.find(
-x=>x.id===id
-);
+        const a =
+            banco.agenda.find(
+                x=>x.solicitacaoId===o.solicitacaoId
+            );
 
-if(!o){
-return;
-}
+        if(a){
+            a.status=status;
+        }
 
-o.status=novoStatus;
+    }
 
-if(o.solicitacaoId){
-
-const s =
-banco.solicitacoes.find(
-x=>x.id===o.solicitacaoId
-);
-
-if(s){
-s.status=novoStatus;
-}
-
-const a =
-banco.agenda.find(
-x=>x.solicitacaoId===o.solicitacaoId
-);
-
-if(a){
-a.status=novoStatus;
-}
+    salvarBanco();
 
 }
 
-salvarBanco();
-
-}
-
-
-/* ==================================================
-EDITAR ORÇAMENTO
-================================================== */
 
 function editarOrcamento(id){
 
-const o =
-banco.orcamentos.find(
-x=>x.id===id
-);
+    const o =
+        banco.orcamentos.find(
+            x=>x.id===id
+        );
 
-if(!o){
-return;
+    if(!o){
+        return;
+    }
+
+    if(o.solicitacaoId){
+
+        editarSolicitacao(
+            o.solicitacaoId
+        );
+
+        return;
+
+    }
+
+    preencherClientesOrcamento();
+
+    const cliente =
+        banco.clientes.find(
+            c=>
+                c.id===o.clienteId ||
+                telefoneWhats(c.whatsapp)===
+                telefoneWhats(o.whatsapp)
+        );
+
+    document
+        .getElementById("orcamentoId")
+        .value=o.id;
+
+    if(cliente){
+
+        document
+            .getElementById("orcCliente")
+            .value=cliente.id;
+
+    }
+
+    document
+        .getElementById("orcServico")
+        .value=o.servico || "";
+
+    document
+        .getElementById("orcDescricao")
+        .value=o.descricao || "";
+
+    document
+        .getElementById("orcValor")
+        .value=o.valor || 0;
+
+    document
+        .getElementById("orcData")
+        .value=o.data || "";
+
+    document
+        .getElementById("orcHora")
+        .value=o.hora || "";
+
+    document
+        .getElementById("orcValidade")
+        .value=o.validade || "";
+
+    abrirModal(
+        "modalOrcamento"
+    );
+
 }
 
-if(o.solicitacaoId){
-
-editarSolicitacao(
-o.solicitacaoId
-);
-
-return;
-
-}
-
-alert(
-"Este orçamento não possui solicitação vinculada."
-);
-
-}
-
-
-/* ==================================================
-EXCLUIR ORÇAMENTO
-================================================== */
 
 function excluirOrcamento(id){
 
-if(
-!confirm(
-"Excluir este orçamento?"
-)
-){
-return;
-}
+    const o =
+        banco.orcamentos.find(
+            x=>x.id===id
+        );
 
-banco.orcamentos =
-banco.orcamentos.filter(
-x=>x.id!==id
-);
+    if(!o){
+        return;
+    }
 
-salvarBanco();
+    if(
+        !confirm(
+            "Excluir este orçamento?"
+        )
+    ){
+        return;
+    }
 
-}
+    banco.orcamentos =
+        banco.orcamentos.filter(
+            x=>x.id!==id
+        );
 
-
-/* ==================================================
-STATUS AGENDA
-================================================== */
-
-function alterarStatusAgenda(id,novoStatus){
-
-const a =
-banco.agenda.find(
-x=>x.id===id
-);
-
-if(!a){
-return;
-}
-
-a.status=novoStatus;
-
-if(a.solicitacaoId){
-
-const s =
-banco.solicitacoes.find(
-x=>x.id===a.solicitacaoId
-);
-
-if(s){
-s.status=novoStatus;
-}
-
-const o =
-banco.orcamentos.find(
-x=>x.solicitacaoId===a.solicitacaoId
-);
-
-if(o){
-o.status=novoStatus;
-}
-
-}
-
-salvarBanco();
+    salvarBanco();
 
 }
 
 
-/* ==================================================
-GERAR NÚMERO DO ORÇAMENTO
-================================================== */
+/* =====================================================
+   VISUALIZAR ORÇAMENTO
+===================================================== */
 
-function numeroOrcamento(o){
+let orcamentoAtualId=null;
 
-if(!o.numero){
 
-const ano =
-new Date().getFullYear();
+function visualizarOrcamento(id){
 
-o.numero =
-"ORC-"+ano+"-"+
+    const o =
+        banco.orcamentos.find(
+            x=>x.id===id
+        );
 
-String(
-Math.floor(
-Math.random()*9000
-)+1000
-);
+    if(!o){
+        return;
+    }
 
-localStorage.setItem(
-CHAVE,
-JSON.stringify(banco)
-);
+    orcamentoAtualId=id;
 
-}
+    const empresa =
+        banco.empresa;
 
-return o.numero;
+    const numero =
+        o.id.substring(
+            Math.max(0,o.id.length-8)
+        );
 
-}
+    const html = `
 
+        <div class="quotePreview">
 
-/* ==================================================
-GERAR ORÇAMENTO PROFISSIONAL
-================================================== */
+            <div class="quoteHeader">
 
-function gerarOrcamento(id){
+                <div>
 
-const o =
-banco.orcamentos.find(
-x=>x.id===id
-);
+                    <div class="quoteTitle">
+                        ORÇAMENTO
+                    </div>
 
-if(!o){
-return;
-}
+                    <strong>
+                        ${escaparHTML(empresa.nome)}
+                    </strong>
 
-orcamentoAtualId=id;
+                    <br>
 
-numeroOrcamento(o);
+                    ${escaparHTML(empresa.cidade || "")}
 
-if(o.validade===undefined){
-o.validade=7;
-}
+                    ${
+                        empresa.whatsapp
+                        ?
+                        `<br>WhatsApp:
+                        ${escaparHTML(empresa.whatsapp)}`
+                        :
+                        ""
+                    }
 
-if(o.observacoes===undefined){
-o.observacoes="";
-}
+                </div>
 
-localStorage.setItem(
-CHAVE,
-JSON.stringify(banco)
-);
+                <div class="quoteNumber">
 
-const emissao =
-new Date()
-.toLocaleDateString(
-"pt-BR"
-);
+                    <strong>
+                        Nº ${escaparHTML(numero)}
+                    </strong>
 
-const cidade =
-banco.empresa.cidade ||
-"Águaí - SP";
+                    <br>
 
-const empresa =
-banco.empresa.nome ||
-"SM Limpezas";
+                    Emissão:
+                    ${dataBR(hoje())}
 
-const telefone =
-banco.empresa.whatsapp ||
-"Não informado";
+                </div>
 
-const validade =
-o.validade||7;
+            </div>
 
-const vencimento =
-new Date();
 
-vencimento.setDate(
-vencimento.getDate()+Number(validade)
-);
+            <div class="quoteClient">
 
-const validadeTexto =
-vencimento.toLocaleDateString(
-"pt-BR"
-);
+                <strong>CLIENTE</strong>
 
-document
-.getElementById(
-"documentoOrcamento"
-)
-.innerHTML=`
+                <br><br>
 
-<div class="orcCabecalho">
+                ${escaparHTML(o.cliente)}
 
-<div class="orcEmpresa">
+                <br>
 
-<h1>
-${empresa}
-</h1>
+                WhatsApp:
+                ${escaparHTML(o.whatsapp || "-")}
 
-<p>
-Serviços profissionais de limpeza
-</p>
+            </div>
 
-<p>
-${cidade}
-</p>
 
-<p>
-WhatsApp: ${telefone}
-</p>
+            <h3>
+                Serviço
+            </h3>
 
-</div>
+            <p>
+                <strong>
+                    ${escaparHTML(o.servico)}
+                </strong>
+            </p>
 
 
-<div class="orcNumero">
-
-<span>
-ORÇAMENTO
-</span>
-
-<strong>
-${o.numero}
-</strong>
-
-<span>
-Emissão: ${emissao}
-</span>
-
-</div>
-
-</div>
-
-
-<div class="orcInfo">
-
-<div class="orcBox">
-
-<h3>
-Cliente
-</h3>
-
-<strong>
-${o.cliente||"-"}
-</strong>
-
-<p>
-WhatsApp: ${o.whatsapp||"-"}
-</p>
-
-</div>
-
-
-<div class="orcBox">
-
-<h3>
-Validade
-</h3>
-
-<strong>
-${validade} dias
-</strong>
-
-<p>
-Válido até: ${validadeTexto}
-</p>
-
-</div>
-
-</div>
-
-
-<div class="orcServico">
-
-<table>
-
-<tr>
-
-<th>
-Serviço
-</th>
-
-<th>
-Data
-</th>
-
-<th>
-Horário
-</th>
-
-<th>
-Valor
-</th>
-
-</tr>
-
-<tr>
-
-<td>
-${o.servico||"-"}
-</td>
-
-<td>
-${dataBR(o.data)}
-</td>
-
-<td>
-${o.hora||"-"}
-</td>
-
-<td>
-<strong>
-${dinheiro(o.valor)}
-</strong>
-</td>
-
-</tr>
-
-</table>
-
-</div>
-
-
-<div class="orcTotal">
-
-<span>
-VALOR TOTAL
-</span>
-
-<strong>
-${dinheiro(o.valor)}
-</strong>
-
-</div>
-
-
-<div class="orcObservacoes">
-
-<h3>
-Observações
-</h3>
-
-<div class="orcBox">
-
-${
-o.observacoes
-?
-String(o.observacoes)
-.replace(/\n/g,"<br>")
-:
-"Serviço conforme descrição acima."
-}
-
-</div>
-
-</div>
-
-
-<div style="margin-top:20px">
-
-<strong>
-Status:
-</strong>
-
-${badge(o.status)}
-
-</div>
-
-
-<div class="orcRodape">
-
-<p>
-Agradecemos pela preferência.
-</p>
-
-<p>
-${empresa} • ${cidade}
-</p>
-
-<p>
-Orçamento ${o.numero}
-</p>
-
-</div>
-
-`;
-
-abrirModal(
-"modalOrcamento"
-);
+            ${
+                o.descricao
+                ?
+                `
+                    <h3>Descrição</h3>
+
+                    <p>
+                        ${escaparHTML(o.descricao)
+                            .replace(/\n/g,"<br>")}
+                    </p>
+                `
+                :
+                ""
+            }
+
+
+            ${
+                o.data
+                ?
+                `
+                    <p>
+                        <strong>Data:</strong>
+                        ${dataBR(o.data)}
+                        ${
+                            o.hora
+                            ?
+                            " • " +
+                            escaparHTML(o.hora)
+                            :
+                            ""
+                        }
+                    </p>
+                `
+                :
+                ""
+            }
+
+
+            ${
+                o.validade
+                ?
+                `
+                    <p>
+                        <strong>
+                            Validade:
+                        </strong>
+                        ${dataBR(o.validade)}
+                    </p>
+                `
+                :
+                ""
+            }
+
+
+            <div class="quoteTotal">
+
+                Total:
+                ${dinheiro(o.valor)}
+
+            </div>
+
+
+            <div class="quoteFooter">
+
+                ${
+                    escaparHTML(
+                        empresa.rodape ||
+                        "Obrigado pela preferência."
+                    )
+                }
+
+            </div>
+
+        </div>
+
+    `;
+
+    document
+        .getElementById(
+            "orcamentoVisualizacao"
+        )
+        .innerHTML=html;
+
+    abrirModal(
+        "modalVisualizarOrcamento"
+    );
 
 }
 
 
-/* ==================================================
-ENVIAR ORÇAMENTO WHATSAPP
-================================================== */
+function imprimirOrcamento(){
+
+    const conteudo =
+        document
+        .getElementById(
+            "orcamentoVisualizacao"
+        )
+        .innerHTML;
+
+    const area =
+        document
+        .getElementById(
+            "impressaoOrcamento"
+        );
+
+    area.innerHTML=conteudo;
+
+    window.print();
+
+}
+
 
 function enviarOrcamentoWhatsApp(){
 
-if(!orcamentoAtualId){
-return;
+    const o =
+        banco.orcamentos.find(
+            x=>x.id===orcamentoAtualId
+        );
+
+    if(!o){
+        return;
+    }
+
+    const mensagem =
+
+        "Olá " +
+        o.cliente +
+        ", tudo bem?\n\n" +
+
+        "Segue o orçamento da " +
+        banco.empresa.nome +
+        ":\n\n" +
+
+        "Serviço: " +
+        o.servico +
+        "\n" +
+
+        "Valor: " +
+        dinheiro(o.valor) +
+        "\n" +
+
+        (
+            o.data
+            ?
+            "Data: " +
+            dataBR(o.data) +
+            "\n"
+            :
+            ""
+        ) +
+
+        (
+            o.hora
+            ?
+            "Horário: " +
+            o.hora +
+            "\n"
+            :
+            ""
+        ) +
+
+        (
+            o.validade
+            ?
+            "Validade: " +
+            dataBR(o.validade) +
+            "\n"
+            :
+            ""
+        ) +
+
+        "\n" +
+
+        "Qualquer dúvida estou à disposição.";
+
+    const telefone =
+        telefoneWhats(
+            o.whatsapp
+        );
+
+    if(!telefone){
+
+        alert(
+            "O cliente não possui WhatsApp cadastrado."
+        );
+
+        return;
+
+    }
+
+    const url =
+        "https://wa.me/55" +
+        telefone +
+        "?text=" +
+        encodeURIComponent(mensagem);
+
+    window.open(
+        url,
+        "_blank"
+    );
+
 }
 
-const o =
-banco.orcamentos.find(
-x=>x.id===orcamentoAtualId
-);
 
-if(!o){
-return;
-}
+/* =====================================================
+   AGENDA
+===================================================== */
 
-const telefone =
-telefoneWhats(o.whatsapp);
+function alterarStatusAgenda(
+    id,
+    status
+){
 
-if(!telefone){
+    const a =
+        banco.agenda.find(
+            x=>x.id===id
+        );
 
-alert(
-"O cliente não possui WhatsApp cadastrado."
-);
+    if(!a){
+        return;
+    }
 
-return;
-}
+    a.status=status;
 
-const empresa =
-banco.empresa.nome||
-"SM Limpezas";
+    if(a.solicitacaoId){
 
-const numero =
-numeroOrcamento(o);
+        const s =
+            banco.solicitacoes.find(
+                x=>x.id===a.solicitacaoId
+            );
 
-const mensagem =
-`Olá ${o.cliente||""}, tudo bem?
+        if(s){
+            s.status=status;
+        }
 
-Aqui é da ${empresa}.
+        const o =
+            banco.orcamentos.find(
+                x=>x.solicitacaoId===a.solicitacaoId
+            );
 
-Segue seu orçamento:
+        if(o){
+            o.status=status;
+        }
 
-📄 Orçamento: ${numero}
+    }
 
-🧹 Serviço: ${o.servico||"-"}
-
-📅 Data: ${dataBR(o.data)}
-
-⏰ Horário: ${o.hora||"-"}
-
-💰 Valor: ${dinheiro(o.valor)}
-
-📌 Status: ${o.status}
-
-Obrigado pela preferência!`;
-
-window.open(
-"https://wa.me/55"+
-telefone+
-"?text="+
-encodeURIComponent(mensagem),
-"_blank"
-);
+    salvarBanco();
 
 }
 
 
-/* ==================================================
-MODAIS
-================================================== */
+/* =====================================================
+   MODAIS
+===================================================== */
 
 function abrirModal(id){
 
-document
-.getElementById(id)
-.classList.add("show");
+    const modal =
+        document.getElementById(id);
+
+    if(modal){
+        modal.classList.add("show");
+    }
 
 }
 
 
 function fecharModal(id){
 
+    const modal =
+        document.getElementById(id);
+
+    if(modal){
+        modal.classList.remove("show");
+    }
+
+}
+
+
 document
-.getElementById(id)
-.classList.remove("show");
+    .querySelectorAll("[data-close]")
+    .forEach(botao=>{
+
+        botao.addEventListener(
+            "click",
+            ()=>{
+                fecharModal(
+                    botao.dataset.close
+                );
+            }
+        );
+
+    });
+
+
+document
+    .querySelectorAll(".modal")
+    .forEach(modal=>{
+
+        modal.addEventListener(
+            "click",
+            event=>{
+
+                if(event.target===modal){
+
+                    modal.classList.remove(
+                        "show"
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+
+/* =====================================================
+   STATUS SELECT
+===================================================== */
+
+function preencherStatus(select,status){
+
+    select.innerHTML="";
+
+    STATUS.forEach(s=>{
+
+        const option =
+            document.createElement("option");
+
+        option.value=s;
+        option.textContent=s;
+
+        if(s===status){
+            option.selected=true;
+        }
+
+        select.appendChild(option);
+
+    });
 
 }
 
 
-/* ==================================================
-CONFIGURAÇÕES
-================================================== */
-
-function salvarConfiguracoes(){
-
-banco.empresa.nome=
-document.getElementById(
-"empresaNome"
-).value;
-
-banco.empresa.whatsapp=
-document.getElementById(
-"empresaWhats"
-).value;
-
-banco.empresa.cidade=
-document.getElementById(
-"empresaCidade"
-).value;
-
-salvarBanco();
-
-alert(
-"Configurações salvas."
-);
-
-}
-
-
-/* ==================================================
-BACKUP
-================================================== */
-
-function exportarBackup(){
-
-const dados=
-JSON.stringify(
-banco,
-null,
-2
-);
-
-const arquivo=
-new Blob(
-[dados],
-{
-type:"application/json"
-}
-);
-
-const url=
-URL.createObjectURL(
-arquivo
-);
-
-const a=
-document.createElement("a");
-
-a.href=url;
-
-a.download=
-"backup-limpeza-pro-v14.json";
-
-a.click();
-
-URL.revokeObjectURL(url);
-
-}
-
-
-/* ==================================================
-IMPORTAR
-================================================== */
-
-function importarBackup(event){
-
-const arquivo=
-event.target.files[0];
-
-if(!arquivo){
-return;
-}
-
-const leitor=
-new FileReader();
-
-leitor.onload=function(){
-
-try{
-
-const dados=
-JSON.parse(
-leitor.result
-);
-
-if(
-!dados.empresa ||
-!dados.clientes ||
-!dados.solicitacoes
-){
-
-throw new Error();
-
-}
-
-if(
-confirm(
-"Substituir os dados atuais pelo backup?"
-)
-){
-
-banco=dados;
-
-salvarBanco();
-
-alert(
-"Backup restaurado com sucesso."
-);
-
-}
-
-}
-catch{
-
-alert(
-"Arquivo de backup inválido."
-);
-
-}
-
-};
-
-leitor.readAsText(
-arquivo
-);
-
-}
-
-
-/* ==================================================
-APAGAR
-================================================== */
-
-function apagarDados(){
-
-if(
-!confirm(
-"ATENÇÃO: todos os dados deste aparelho serão apagados. Continuar?"
-)
-){
-return;
-}
-
-localStorage.removeItem(
-CHAVE
-);
-
-location.reload();
-
-}
-
-
-/* ==================================================
-DASHBOARD
-================================================== */
+/* =====================================================
+   RENDER DASHBOARD
+===================================================== */
 
 function renderDashboard(){
 
-let total=
-banco.orcamentos.reduce(
-(t,o)=>
-t+
-Number(o.valor||0),
-0
-);
-
-let pago=
-banco.orcamentos
-.filter(
-o=>o.status==="Pago"
-)
-.reduce(
-(t,o)=>
-t+
-Number(o.valor||0),
-0
-);
+    const total =
+        banco.orcamentos.reduce(
+            (t,o)=>
+                t + Number(o.valor || 0),
+            0
+        );
+
+    const pago =
+        banco.orcamentos
+            .filter(
+                o=>o.status==="Pago"
+            )
+            .reduce(
+                (t,o)=>
+                    t + Number(o.valor || 0),
+                0
+            );
+
+    const receber =
+        banco.orcamentos
+            .filter(
+                o=>
+                    o.status!=="Pago" &&
+                    o.status!=="Cancelado" &&
+                    o.status!=="Recusado"
+            )
+            .reduce(
+                (t,o)=>
+                    t + Number(o.valor || 0),
+                0
+            );
+
+    const agendados =
+        banco.solicitacoes.filter(
+            x=>x.status==="Agendado"
+        ).length;
+
+    const andamento =
+        banco.solicitacoes.filter(
+            x=>x.status==="Em andamento"
+        ).length;
+
+    const concluidos =
+        banco.solicitacoes.filter(
+            x=>x.status==="Concluído"
+        ).length;
+
+    document
+        .getElementById("kpis")
+        .innerHTML=`
+
+            <div class="card kpi">
+                <span>Clientes</span>
+                <strong>
+                    ${banco.clientes.length}
+                </strong>
+            </div>
+
+            <div class="card kpi">
+                <span>Solicitações</span>
+                <strong>
+                    ${banco.solicitacoes.length}
+                </strong>
+            </div>
+
+            <div class="card kpi">
+                <span>Agendados</span>
+                <strong>
+                    ${agendados}
+                </strong>
+            </div>
+
+            <div class="card kpi">
+                <span>Em andamento</span>
+                <strong>
+                    ${andamento}
+                </strong>
+            </div>
 
-let receber=
-banco.orcamentos
-.filter(
-o=>
-o.status!=="Pago" &&
-o.status!=="Cancelado" &&
-o.status!=="Recusado"
-)
-.reduce(
-(t,o)=>
-t+
-Number(o.valor||0),
-0
-);
+            <div class="card kpi">
+                <span>Concluídos</span>
+                <strong>
+                    ${concluidos}
+                </strong>
+            </div>
 
-const pendentes=
-banco.solicitacoes.filter(
-x=>x.status==="Pendente"
-).length;
+        `;
 
-const agendados=
-banco.solicitacoes.filter(
-x=>x.status==="Agendado"
-).length;
 
-const andamento=
-banco.solicitacoes.filter(
-x=>x.status==="Em andamento"
-).length;
+    document
+        .getElementById("fluxoStatus")
+        .innerHTML =
+        STATUS.map(status=>{
 
-const concluidos=
-banco.solicitacoes.filter(
-x=>x.status==="Concluído"
-).length;
+            const quantidade =
+                banco.solicitacoes.filter(
+                    x=>x.status===status
+                ).length;
 
-document
-.getElementById("kpis")
-.innerHTML=`
+            return `
 
-<div class="card kpi">
+                <div class="statBox">
 
-<span>
-Clientes
-</span>
+                    <span>
+                        ${escaparHTML(status)}
+                    </span>
 
-<strong>
-${banco.clientes.length}
-</strong>
+                    <strong>
+                        ${quantidade}
+                    </strong>
 
-</div>
+                </div>
 
+            `;
 
-<div class="card kpi">
+        }).join("");
 
-<span>
-Solicitações
-</span>
 
-<strong>
-${banco.solicitacoes.length}
-</strong>
+    document
+        .getElementById("financeiro")
+        .innerHTML=`
 
-</div>
+            <div class="statBox">
 
+                <span>
+                    Faturamento total
+                </span>
 
-<div class="card kpi">
+                <strong>
+                    ${dinheiro(total)}
+                </strong>
 
-<span>
-Agendados
-</span>
+            </div>
 
-<strong>
-${agendados}
-</strong>
+            <div class="statBox">
 
-</div>
+                <span>
+                    Recebido
+                </span>
 
+                <strong>
+                    ${dinheiro(pago)}
+                </strong>
 
-<div class="card kpi">
+            </div>
 
-<span>
-Em andamento
-</span>
+            <div class="statBox">
 
-<strong>
-${andamento}
-</strong>
+                <span>
+                    A receber
+                </span>
 
-</div>
+                <strong>
+                    ${dinheiro(receber)}
+                </strong>
 
+            </div>
 
-<div class="card kpi">
+        `;
 
-<span>
-Concluídos
-</span>
 
-<strong>
-${concluidos}
-</strong>
+    const recentes =
+        banco.solicitacoes.slice(0,5);
 
-</div>
+    document
+        .getElementById("atividade")
+        .innerHTML = recentes.length
 
-`;
+        ?
 
+        recentes.map(x=>`
 
-document
-.getElementById("fluxoStatus")
-.innerHTML=
+            <div class="historyItem">
 
-STATUS.map(
-status=>{
+                <strong>
+                    ${escaparHTML(x.nome)}
+                </strong>
 
-const quantidade=
-banco.solicitacoes.filter(
-x=>x.status===status
-).length;
+                <br>
 
-return `
+                <span class="muted">
+                    ${escaparHTML(x.servico)}
+                </span>
 
-<div class="statBox">
+                <br>
 
-<span>
-${status}
-</span>
+                ${dataBR(x.data)}
 
-<strong>
-${quantidade}
-</strong>
+                <br>
 
-</div>
+                ${badge(x.status)}
 
-`;
+            </div>
 
-}
-).join("");
+        `).join("")
 
+        :
 
-document
-.getElementById("financeiro")
-.innerHTML=`
+        `
 
-<div class="statBox">
+            <div class="empty">
+                Nenhuma atividade registrada.
+            </div>
 
-<span>
-Faturamento total
-</span>
-
-<strong>
-${dinheiro(total)}
-</strong>
-
-</div>
-
-
-<div class="statBox">
-
-<span>
-Recebido
-</span>
-
-<strong>
-${dinheiro(pago)}
-</strong>
-
-</div>
-
-
-<div class="statBox">
-
-<span>
-A receber
-</span>
-
-<strong>
-${dinheiro(receber)}
-</strong>
-
-</div>
-
-`;
-
-
-const recentes=
-banco.solicitacoes.slice(0,5);
-
-document
-.getElementById("atividade")
-.innerHTML=
-
-recentes.length
-?
-
-recentes.map(
-x=>`
-
-<div class="historyItem">
-
-<strong>
-${x.nome}
-</strong>
-
-<br>
-
-<span class="muted">
-${x.servico}
-</span>
-
-<br>
-
-${dataBR(x.data)}
-
-<br>
-
-${badge(x.status)}
-
-</div>
-
-`
-).join("")
-
-:
-
-`
-
-<div class="empty">
-Nenhuma atividade registrada.
-</div>
-
-`;
+        `;
 
 }
 
 
-/* ==================================================
-RENDER CLIENTES
-================================================== */
+/* =====================================================
+   RENDER CLIENTES
+===================================================== */
 
 function renderClientes(){
 
-const elemento=
-document.getElementById(
-"listaClientes"
-);
+    const elemento =
+        document.getElementById(
+            "listaClientes"
+        );
 
-if(
-!banco.clientes.length
-){
+    if(!banco.clientes.length){
 
-elemento.innerHTML=`
+        elemento.innerHTML=`
 
-<div class="empty">
-Nenhum cliente cadastrado.
-</div>
+            <div class="empty">
+                Nenhum cliente cadastrado.
+            </div>
 
-`;
+        `;
 
-return;
+        return;
+
+    }
+
+    elemento.innerHTML=`
+
+        <div class="tableWrap">
+
+            <table>
+
+                <tr>
+
+                    <th>Nome</th>
+                    <th>WhatsApp</th>
+                    <th>Endereço</th>
+                    <th>Ações</th>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+    `;
+
+    const tabela =
+        elemento.querySelector("table");
+
+    banco.clientes.forEach(c=>{
+
+        const tr =
+            document.createElement("tr");
+
+        const tdNome =
+            document.createElement("td");
+
+        tdNome.innerHTML =
+            "<strong>" +
+            escaparHTML(c.nome) +
+            "</strong>";
+
+        const tdWhats =
+            document.createElement("td");
+
+        tdWhats.textContent =
+            c.whatsapp || "-";
+
+        const tdEndereco =
+            document.createElement("td");
+
+        tdEndereco.textContent =
+            c.endereco || "-";
+
+        const tdAcoes =
+            document.createElement("td");
+
+        const actions =
+            document.createElement("div");
+
+        actions.className="actions";
+
+        const btnWhats =
+            document.createElement("button");
+
+        btnWhats.className =
+            "btn whatsapp";
+
+        btnWhats.textContent="WhatsApp";
+
+        btnWhats.onclick=()=>{
+
+            abrirWhatsApp(
+                c.whatsapp,
+                c.nome
+            );
+
+        };
+
+
+        const btnHistorico =
+            document.createElement("button");
+
+        btnHistorico.className =
+            "btn info";
+
+        btnHistorico.textContent="Histórico";
+
+        btnHistorico.onclick=()=>{
+
+            abrirHistoricoCliente(
+                c.id
+            );
+
+        };
+
+
+        const btnEditar =
+            document.createElement("button");
+
+        btnEditar.className =
+            "btn secondary";
+
+        btnEditar.textContent="Editar";
+
+        btnEditar.onclick=()=>{
+
+            editarCliente(c.id);
+
+        };
+
+
+        const btnExcluir =
+            document.createElement("button");
+
+        btnExcluir.className =
+            "btn danger";
+
+        btnExcluir.textContent="Excluir";
+
+        btnExcluir.onclick=()=>{
+
+            excluirCliente(c.id);
+
+        };
+
+
+        actions.append(
+            btnWhats,
+            btnHistorico,
+            btnEditar,
+            btnExcluir
+        );
+
+        tdAcoes.appendChild(actions);
+
+        tr.append(
+            tdNome,
+            tdWhats,
+            tdEndereco,
+            tdAcoes
+        );
+
+        tabela.appendChild(tr);
+
+    });
 
 }
 
-elemento.innerHTML=`
 
-<div class="tableWrap">
-
-<table>
-
-<tr>
-
-<th>Nome</th>
-
-<th>WhatsApp</th>
-
-<th>Endereço</th>
-
-<th>Ações</th>
-
-</tr>
-
-
-${
-banco.clientes.map(
-c=>`
-
-<tr>
-
-<td>
-
-<strong>
-${c.nome}
-</strong>
-
-</td>
-
-
-<td>
-${c.whatsapp}
-</td>
-
-
-<td>
-${c.endereco||"-"}
-</td>
-
-
-<td>
-
-<div class="actions">
-
-<button
-class="btn whatsapp"
-onclick="abrirWhatsApp('${c.whatsapp}','${String(c.nome).replace(/'/g,"\\'")}')">
-WhatsApp
-</button>
-
-
-<button
-class="btn info"
-onclick="abrirHistoricoCliente('${c.id}')">
-Histórico
-</button>
-
-
-<button
-class="btn secondary"
-onclick="editarCliente('${c.id}')">
-Editar
-</button>
-
-
-<button
-class="btn danger"
-onclick="excluirCliente('${c.id}')">
-Excluir
-</button>
-
-</div>
-
-</td>
-
-</tr>
-
-`
-).join("")
-}
-
-</table>
-
-</div>
-
-`;
-
-}
-
-
-/* ==================================================
-RENDER SOLICITAÇÕES
-================================================== */
+/* =====================================================
+   RENDER SOLICITAÇÕES
+===================================================== */
 
 function renderSolicitacoes(){
 
-const elemento=
-document.getElementById(
-"listaSolicitacoes"
-);
+    const elemento =
+        document.getElementById(
+            "listaSolicitacoes"
+        );
 
-if(
-!banco.solicitacoes.length
-){
+    if(!banco.solicitacoes.length){
 
-elemento.innerHTML=`
+        elemento.innerHTML=`
 
-<div class="empty">
-Nenhuma solicitação cadastrada.
-</div>
+            <div class="empty">
+                Nenhuma solicitação cadastrada.
+            </div>
 
-`;
+        `;
 
-return;
+        return;
+
+    }
+
+    const wrap =
+        document.createElement("div");
+
+    wrap.className="tableWrap";
+
+    const table =
+        document.createElement("table");
+
+    table.innerHTML=`
+
+        <tr>
+
+            <th>Cliente</th>
+            <th>Serviço</th>
+            <th>Data</th>
+            <th>Valor</th>
+            <th>Status</th>
+            <th>Ações</th>
+
+        </tr>
+
+    `;
+
+    banco.solicitacoes.forEach(s=>{
+
+        const tr =
+            document.createElement("tr");
+
+        tr.innerHTML=`
+
+            <td>
+                <strong>
+                    ${escaparHTML(s.nome)}
+                </strong>
+
+                <br>
+
+                <span class="small">
+                    ${escaparHTML(s.whatsapp)}
+                </span>
+            </td>
+
+            <td>
+                ${escaparHTML(s.servico)}
+            </td>
+
+            <td>
+                ${dataBR(s.data)}
+                <br>
+                ${escaparHTML(s.hora || "")}
+            </td>
+
+            <td>
+                <strong>
+                    ${dinheiro(s.valor)}
+                </strong>
+            </td>
+
+            <td></td>
+
+            <td></td>
+
+        `;
+
+        const tdStatus =
+            tr.children[4];
+
+        const select =
+            montarStatusSelect(
+                s.status
+            );
+
+        select.onchange=()=>{
+
+            alterarStatusSolicitacao(
+                s.id,
+                select.value
+            );
+
+        };
+
+        tdStatus.appendChild(select);
+
+        tdStatus.insertAdjacentHTML(
+            "beforeend",
+            "<br><br>"+badge(s.status)
+        );
+
+
+        const tdAcoes =
+            tr.children[5];
+
+        const actions =
+            document.createElement("div");
+
+        actions.className="actions";
+
+
+        const editar =
+            document.createElement("button");
+
+        editar.className="btn info";
+        editar.textContent="Editar";
+
+        editar.onclick=()=>{
+
+            editarSolicitacao(s.id);
+
+        };
+
+
+        const orcamento =
+            document.createElement("button");
+
+        orcamento.className="btn warning";
+        orcamento.textContent="Orçamento";
+
+        orcamento.onclick=()=>{
+
+            const o =
+                banco.orcamentos.find(
+                    x=>x.solicitacaoId===s.id
+                );
+
+            if(o){
+                visualizarOrcamento(o.id);
+            }
+            else{
+
+                criarOuAtualizarRelacionados(s);
+
+                salvarBanco();
+
+                const novo =
+                    banco.orcamentos.find(
+                        x=>x.solicitacaoId===s.id
+                    );
+
+                if(novo){
+                    visualizarOrcamento(novo.id);
+                }
+
+            }
+
+        };
+
+
+        const whats =
+            document.createElement("button");
+
+        whats.className="btn whatsapp";
+        whats.textContent="WhatsApp";
+
+        whats.onclick=()=>{
+
+            abrirWhatsApp(
+                s.whatsapp,
+                s.nome
+            );
+
+        };
+
+
+        const excluir =
+            document.createElement("button");
+
+        excluir.className="btn danger";
+        excluir.textContent="Excluir";
+
+        excluir.onclick=()=>{
+
+            excluirSolicitacao(s.id);
+
+        };
+
+
+        actions.append(
+            editar,
+            orcamento,
+            whats,
+            excluir
+        );
+
+        tdAcoes.appendChild(actions);
+
+        table.appendChild(tr);
+
+    });
+
+    wrap.appendChild(table);
+
+    elemento.innerHTML="";
+
+    elemento.appendChild(wrap);
 
 }
 
-elemento.innerHTML=`
 
-<div class="tableWrap">
+/* =====================================================
+   RENDER ORÇAMENTOS
+===================================================== */
 
-<table>
+function renderOrcamentos(){
 
-<tr>
+    const elemento =
+        document.getElementById(
+            "listaOrcamentos"
+        );
 
-<th>Cliente
+    if(!banco.orcamentos.length){
+
+        elemento.innerHTML=`
+
+            <div class="empty">
+                Nenhum orçamento cadastrado.
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+    const wrap =
+        document.createElement("div");
+
+    wrap.className="tableWrap";
+
+    const table =
+        document.createElement("table");
+
+    table.innerHTML=`
+
+        <tr>
+
+            <th>Cliente</th>
+            <th>Serviço</th>
+            <th>Data</th>
+            <th>Valor</th>
+            <th>Status</th>
+            <th>Ações</th>
+
+        </tr>
+
+    `;
+
+    banco.orcamentos.forEach(o=>{
+
+        const tr =
+            document.createElement("tr");
+
+        tr.innerHTML=`
+
+            <td>
+
+                <strong>
+                    ${escaparHTML(o.cliente)}
+                </strong>
+
+                <br>
+
+                ${escaparHTML(o.whatsapp || "")}
+
+            </td>
+
+            <td>
+                ${escaparHTML(o.servico)}
+            </td>
+
+            <td>
+                ${dataBR(o.data)}
+                <br>
+                ${escaparHTML(o.hora || "")}
+            </td>
+
+            <td>
+
+                <strong>
+                    ${dinheiro(o.valor)}
+                </strong>
+
+            </td>
+
+            <td></td>
+
+            <td></td>
+
+        `;
+
+        const tdStatus =
+            tr.children[4];
+
+        const select =
+            montarStatusSelect(
+                o.status
+            );
+
+        select.onchange=()=>{
+
+            alterarStatusOrcamento(
+                o.id,
+                select.value
+            );
+
+        };
+
+        tdStatus.appendChild(select);
+
+        tdStatus.insertAdjacentHTML(
+            "beforeend",
+            "<br><br>"+badge(o.status)
+        );
+
+
+        const actions =
+            document.createElement("div");
+
+        actions.className="actions";
+
+
+        const visualizar =
+            document.createElement("button");
+
+        visualizar.className=
+            "btn primary";
+
+        visualizar.textContent=
+            "Ver orçamento";
+
+        visualizar.onclick=()=>{
+
+            visualizarOrcamento(o.id);
+
+        };
+
+
+        const editar =
+            document.createElement("button");
+
+        editar.className=
+            "btn info";
+
+        editar.textContent=
+            "Editar";
+
+        editar.onclick=()=>{
+
+            editarOrcamento(o.id);
+
+        };
+
+
+        const whats =
+            document.createElement("button");
+
+        whats.className=
+            "btn whatsapp";
+
+        whats.textContent=
+            "WhatsApp";
+
+        whats.onclick=()=>{
+
+            enviarOrcamentoDireto(o);
+
+        };
+
+
+        const excluir =
+            document.createElement("button");
+
+        excluir.className=
+            "btn danger";
+
+        excluir.textContent=
+            "Excluir";
+
+        excluir.onclick=()=>{
+
+            excluirOrcamento(o.id);
+
+        };
+
+
+        actions.append(
+            visualizar,
+            editar,
+            whats,
+            excluir
+        );
+
+        tr.children[5].appendChild(
+            actions
+        );
+
+        table.appendChild(tr);
+
+    });
+
+    wrap.appendChild(table);
+
+    elemento.innerHTML="";
+
+    elemento.appendChild(wrap);
+
+}
+
+
+function enviarOrcamentoDireto(o){
+
+    const telefone =
+        telefoneWhats(
+            o.whatsapp
+        );
+
+    if(!telefone){
+
+        alert(
+            "O cliente não possui WhatsApp cadastrado."
+        );
+
+        return;
+
+    }
+
+    const mensagem =
+        "Olá " +
+        o.cliente +
+        ", tudo bem?\n\n" +
+        "Segue seu orçamento da " +
+        banco.empresa.nome +
+        ":\n\n" +
+        "Serviço: " +
+        o.servico +
+        "\n" +
+        "Valor: " +
+        dinheiro(o.valor) +
+        "\n\n" +
+        "Fico à disposição.";
+
+    window.open(
+        "https://wa.me/55" +
+        telefone +
+        "?text=" +
+        encodeURIComponent(mensagem),
+        "_blank"
+    );
+
+}
+
+
+/* =====================================================
+   R
