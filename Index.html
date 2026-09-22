@@ -1,0 +1,4076 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<meta
+name="theme-color"
+content="#0f172a">
+
+<link
+rel="manifest"
+href="manifest.json">
+
+<title>Orçamento Limpeza PRO</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f1f5f9;
+    color:#0f172a;
+}
+
+header{
+    background:#0f172a;
+    color:white;
+    padding:16px;
+    position:sticky;
+    top:0;
+    z-index:20;
+}
+
+header h1{
+    margin:0;
+    font-size:21px;
+}
+
+header p{
+    margin:4px 0 0;
+    color:#cbd5e1;
+    font-size:12px;
+}
+
+nav{
+    display:flex;
+    gap:7px;
+    overflow-x:auto;
+    background:white;
+    padding:9px;
+    border-bottom:1px solid #e2e8f0;
+    position:sticky;
+    top:70px;
+    z-index:19;
+}
+
+nav button{
+    border:0;
+    background:#e2e8f0;
+    color:#334155;
+    padding:10px 13px;
+    border-radius:9px;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+nav button.active{
+    background:#0f172a;
+    color:white;
+}
+
+main{
+    max-width:1150px;
+    margin:auto;
+    padding:14px;
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+h2{
+    margin-top:5px;
+}
+
+h3{
+    margin-top:5px;
+}
+
+.card{
+    background:white;
+    border:1px solid #e2e8f0;
+    border-radius:14px;
+    padding:15px;
+    margin-bottom:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,.04);
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(155px,1fr));
+    gap:10px;
+}
+
+.formgrid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(190px,1fr));
+    gap:9px;
+}
+
+.kpi span{
+    color:#64748b;
+    font-size:13px;
+}
+
+.kpi strong{
+    display:block;
+    font-size:24px;
+    margin-top:6px;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    font-size:13px;
+    margin:8px 0 5px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:11px;
+    border:1px solid #cbd5e1;
+    border-radius:9px;
+    font-size:15px;
+    background:white;
+}
+
+textarea{
+    min-height:90px;
+}
+
+button{
+    cursor:pointer;
+}
+
+.btn{
+    border:0;
+    border-radius:9px;
+    padding:10px 13px;
+    font-weight:bold;
+}
+
+.primary{
+    background:#0f172a;
+    color:white;
+}
+
+.secondary{
+    background:#e2e8f0;
+    color:#0f172a;
+}
+
+.success{
+    background:#16a34a;
+    color:white;
+}
+
+.danger{
+    background:#dc2626;
+    color:white;
+}
+
+.warning{
+    background:#f59e0b;
+    color:white;
+}
+
+.info{
+    background:#2563eb;
+    color:white;
+}
+
+.whatsapp{
+    background:#16a34a;
+    color:white;
+}
+
+.actions{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+}
+
+.tableWrap{
+    width:100%;
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13px;
+}
+
+th,
+td{
+    text-align:left;
+    padding:9px;
+    border-bottom:1px solid #e2e8f0;
+    vertical-align:top;
+}
+
+th{
+    background:#f8fafc;
+}
+
+.badge{
+    display:inline-block;
+    padding:5px 9px;
+    border-radius:20px;
+    background:#fef3c7;
+    color:#92400e;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.badge.ok{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.badge.bad{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.badge.blue{
+    background:#dbeafe;
+    color:#1e40af;
+}
+
+.badge.purple{
+    background:#ede9fe;
+    color:#6b21a8;
+}
+
+.badge.orange{
+    background:#ffedd5;
+    color:#9a3412;
+}
+
+.badge.gray{
+    background:#e5e7eb;
+    color:#374151;
+}
+
+.statusSelect{
+    min-width:150px;
+    padding:8px;
+    border-radius:8px;
+    border:1px solid #cbd5e1;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.empty{
+    text-align:center;
+    color:#64748b;
+    padding:30px 10px;
+}
+
+.muted{
+    color:#64748b;
+    font-size:13px;
+}
+
+.small{
+    font-size:12px;
+}
+
+.today{
+    border-left:5px solid #16a34a;
+}
+
+.overdue{
+    border-left:5px solid #dc2626;
+}
+
+.plan{
+    border:2px solid #e2e8f0;
+}
+
+.plan h3{
+    margin-top:0;
+}
+
+hr{
+    border:0;
+    border-top:1px solid #e2e8f0;
+    margin:18px 0;
+}
+
+.quick{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(140px,1fr));
+    gap:8px;
+}
+
+.quick button{
+    min-height:58px;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    z-index:100;
+    padding:15px;
+    overflow:auto;
+}
+
+.modal.show{
+    display:block;
+}
+
+.modalBox{
+    max-width:650px;
+    margin:30px auto;
+    background:white;
+    border-radius:15px;
+    padding:18px;
+}
+
+.statBox{
+    padding:13px;
+    border-radius:12px;
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+}
+
+.statBox strong{
+    display:block;
+    font-size:22px;
+    margin-top:5px;
+}
+
+.historyItem{
+    padding:10px 0;
+    border-bottom:1px solid #e2e8f0;
+}
+
+@media(max-width:600px){
+
+    main{
+        padding:10px;
+    }
+
+    table{
+        font-size:12px;
+        min-width:650px;
+    }
+
+    .tableWrap{
+        overflow-x:auto;
+    }
+
+    .modalBox{
+        margin:10px auto;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<header>
+
+<h1 id="tituloEmpresa">
+Orçamento Limpeza PRO
+</h1>
+
+<p>
+V13 Offline • Gestão de serviços e clientes
+</p>
+
+</header>
+
+
+<nav>
+
+<button
+class="active"
+onclick="abrirPagina('dashboard',this)">
+Dashboard
+</button>
+
+<button
+onclick="abrirPagina('clientes',this)">
+Clientes
+</button>
+
+<button
+onclick="abrirPagina('solicitacoes',this)">
+Solicitações
+</button>
+
+<button
+onclick="abrirPagina('orcamentos',this)">
+Orçamentos
+</button>
+
+<button
+onclick="abrirPagina('agenda',this)">
+Agenda
+</button>
+
+<button
+onclick="abrirPagina('planos',this)">
+Planos
+</button>
+
+<button
+onclick="abrirPagina('backup',this)">
+Backup
+</button>
+
+<button
+onclick="abrirPagina('config',this)">
+Configurações
+</button>
+
+</nav>
+
+
+<main>
+
+
+<!-- ==================================================
+DASHBOARD
+================================================== -->
+
+<section
+id="dashboard"
+class="page active">
+
+<div class="card">
+
+<div class="actions">
+
+<div>
+
+<h2>Dashboard</h2>
+
+<div class="muted">
+Visão geral da empresa
+</div>
+
+</div>
+
+<button
+class="btn primary"
+onclick="novaSolicitacao()">
+
++ Nova solicitação
+
+</button>
+
+</div>
+
+</div>
+
+
+<div
+id="kpis"
+class="grid">
+</div>
+
+
+<div class="card">
+
+<h3>
+Fluxo dos serviços
+</h3>
+
+<div
+id="fluxoStatus"
+class="grid">
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+Financeiro
+</h3>
+
+<div
+id="financeiro"
+class="grid">
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+Ações rápidas
+</h3>
+
+<div class="quick">
+
+<button
+class="btn primary"
+onclick="novaSolicitacao()">
+
+📋 Nova solicitação
+
+</button>
+
+<button
+class="btn info"
+onclick="abrirPagina('clientes',document.querySelectorAll('nav button')[1])">
+
+👤 Clientes
+
+</button>
+
+<button
+class="btn success"
+onclick="abrirPagina('agenda',document.querySelectorAll('nav button')[4])">
+
+📅 Agenda
+
+</button>
+
+<button
+class="btn warning"
+onclick="abrirPagina('orcamentos',document.querySelectorAll('nav button')[3])">
+
+💰 Orçamentos
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+Atividade recente
+</h3>
+
+<div id="atividade"></div>
+
+</div>
+
+</section>
+
+
+
+<!-- ==================================================
+CLIENTES
+================================================== -->
+
+<section
+id="clientes"
+class="page">
+
+<div class="actions">
+
+<h2>
+Clientes
+</h2>
+
+<button
+class="btn primary"
+onclick="novoCliente()">
+
++ Novo cliente
+
+</button>
+
+</div>
+
+
+<div class="card">
+
+<form
+id="formCliente"
+onsubmit="salvarCliente(event)">
+
+<input
+type="hidden"
+id="clienteId">
+
+
+<div class="formgrid">
+
+<div>
+
+<label>
+Nome *
+</label>
+
+<input
+id="clienteNome"
+required>
+
+</div>
+
+
+<div>
+
+<label>
+WhatsApp *
+</label>
+
+<input
+id="clienteWhats"
+required>
+
+</div>
+
+
+<div>
+
+<label>
+E-mail
+</label>
+
+<input
+id="clienteEmail">
+
+</div>
+
+
+<div>
+
+<label>
+Endereço
+</label>
+
+<input
+id="clienteEndereco">
+
+</div>
+
+</div>
+
+
+<br>
+
+
+<div class="actions">
+
+<button
+class="btn primary">
+
+Salvar cliente
+
+</button>
+
+<button
+type="button"
+class="btn secondary"
+onclick="limparFormCliente()">
+
+Limpar
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+
+<div class="card">
+
+<div id="listaClientes"></div>
+
+</div>
+
+</section>
+
+
+
+<!-- ==================================================
+SOLICITAÇÕES
+================================================== -->
+
+<section
+id="solicitacoes"
+class="page">
+
+<div class="actions">
+
+<h2>
+Solicitações
+</h2>
+
+<button
+class="btn primary"
+onclick="novaSolicitacao()">
+
++ Nova
+
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div id="listaSolicitacoes"></div>
+
+</div>
+
+</section>
+
+
+
+<!-- ==================================================
+ORÇAMENTOS
+================================================== -->
+
+<section
+id="orcamentos"
+class="page">
+
+<div class="actions">
+
+<h2>
+Orçamentos
+</h2>
+
+</div>
+
+
+<div class="card">
+
+<div id="listaOrcamentos"></div>
+
+</div>
+
+</section>
+
+
+
+<!-- ==================================================
+AGENDA
+================================================== -->
+
+<section
+id="agenda"
+class="page">
+
+<div class="actions">
+
+<h2>
+Agenda
+</h2>
+
+<button
+class="btn primary"
+onclick="novaSolicitacao()">
+
++ Novo serviço
+
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div id="listaAgenda"></div>
+
+</div>
+
+</section>
+
+
+
+<!-- ==================================================
+PLANOS
+================================================== -->
+
+<section
+id="planos"
+class="page">
+
+<h2>
+Planos
+</h2>
+
+
+<div class="grid">
+
+
+<div class="card plan">
+
+<h3>
+Teste
+</h3>
+
+<p>
+Para experimentar o sistema.
+</p>
+
+<strong>
+Grátis
+</strong>
+
+</div>
+
+
+<div class="card plan">
+
+<h3>
+Profissional
+</h3>
+
+<p>
+Gestão completa para pequenas empresas.
+</p>
+
+<strong>
+R$ 49,90/mês
+</strong>
+
+</div>
+
+
+<div class="card plan">
+
+<h3>
+Premium
+</h3>
+
+<p>
+Mais recursos para empresas em crescimento.
+</p>
+
+<strong>
+R$ 99,90/mês
+</strong>
+
+</div>
+
+
+</div>
+
+
+<div class="card">
+
+<strong>
+Plano atual:
+</strong>
+
+<span id="planoAtual"></span>
+
+</div>
+
+</section>
+
+
+
+<!-- ==================================================
+BACKUP
+================================================== -->
+
+<section
+id="backup"
+class="page">
+
+<h2>
+Backup e restauração
+</h2>
+
+
+<div class="card">
+
+<p class="muted">
+
+Faça backups regularmente para proteger
+os dados armazenados no aparelho.
+
+</p>
+
+
+<div class="actions">
+
+<button
+class="btn primary"
+onclick="exportarBackup()">
+
+Exportar backup
+
+</button>
+
+
+<button
+class="btn secondary"
+onclick="document.getElementById('arquivoBackup').click()">
+
+Restaurar backup
+
+</button>
+
+
+<input
+id="arquivoBackup"
+type="file"
+accept=".json"
+style="display:none"
+onchange="importarBackup(event)">
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ==================================================
+CONFIGURAÇÕES
+================================================== -->
+
+<section
+id="config"
+class="page">
+
+<h2>
+Configurações
+</h2>
+
+
+<div class="card">
+
+<label>
+Nome da empresa
+</label>
+
+<input
+id="empresaNome">
+
+
+<label>
+WhatsApp da empresa
+</label>
+
+<input
+id="empresaWhats">
+
+
+<label>
+Cidade
+</label>
+
+<input
+id="empresaCidade">
+
+
+<br>
+
+
+<button
+class="btn primary"
+onclick="salvarConfiguracoes()">
+
+Salvar configurações
+
+</button>
+
+
+<hr>
+
+
+<button
+class="btn danger"
+onclick="apagarDados()">
+
+Apagar todos os dados
+
+</button>
+
+</div>
+
+</section>
+
+</main>
+
+
+
+<!-- ==================================================
+MODAL CLIENTE
+================================================== -->
+
+<div
+id="modalCliente"
+class="modal">
+
+<div class="modalBox">
+
+<div class="actions">
+
+<h2>
+Histórico do cliente
+</h2>
+
+<button
+class="btn secondary"
+onclick="fecharModal('modalCliente')">
+
+Fechar
+
+</button>
+
+</div>
+
+<div id="conteudoCliente"></div>
+
+</div>
+
+</div>
+
+
+
+<!-- ==================================================
+MODAL SOLICITAÇÃO
+================================================== -->
+
+<div
+id="modalSolicitacao"
+class="modal">
+
+<div class="modalBox">
+
+<div class="actions">
+
+<h2>
+Editar solicitação
+</h2>
+
+<button
+class="btn secondary"
+onclick="fecharModal('modalSolicitacao')">
+
+Fechar
+
+</button>
+
+</div>
+
+
+<form
+onsubmit="salvarEdicaoSolicitacao(event)">
+
+<input
+type="hidden"
+id="editSolicitacaoId">
+
+
+<label>
+Nome do cliente
+</label>
+
+<input
+id="editNome"
+required>
+
+
+<label>
+WhatsApp
+</label>
+
+<input
+id="editWhats"
+required>
+
+
+<label>
+Serviço
+</label>
+
+<input
+id="editServico"
+required>
+
+
+<label>
+Valor
+</label>
+
+<input
+id="editValor"
+type="number"
+step="0.01"
+min="0">
+
+
+<label>
+Data
+</label>
+
+<input
+id="editData"
+type="date">
+
+
+<label>
+Horário
+</label>
+
+<input
+id="editHora"
+type="time">
+
+
+<label>
+Status
+</label>
+
+<select
+id="editStatus">
+
+</select>
+
+
+<br>
+
+
+<button
+class="btn primary">
+
+Salvar alterações
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+
+
+<!-- ==================================================
+JAVASCRIPT
+================================================== -->
+
+<script>
+
+
+/* ==================================================
+CHAVE DO BANCO
+================================================== */
+
+const CHAVE =
+"limpezaProOfflineV11";
+
+
+/* ==================================================
+BANCO
+================================================== */
+
+let banco =
+JSON.parse(
+localStorage.getItem(CHAVE)
+)
+||
+{
+
+empresa:{
+nome:"SM Limpezas",
+whatsapp:"",
+cidade:"Águaí - SP",
+plano:"Profissional"
+},
+
+clientes:[],
+solicitacoes:[],
+orcamentos:[],
+agenda:[]
+
+};
+
+
+
+/* ==================================================
+STATUS
+================================================== */
+
+const STATUS = [
+
+"Pendente",
+
+"Aceito",
+
+"Agendado",
+
+"Em andamento",
+
+"Concluído",
+
+"Aguardando pagamento",
+
+"Pago",
+
+"Cancelado",
+
+"Recusado"
+
+];
+
+
+
+/* ==================================================
+SALVAR BANCO
+================================================== */
+
+function salvarBanco(){
+
+localStorage.setItem(
+CHAVE,
+JSON.stringify(banco)
+);
+
+renderizarTudo();
+
+}
+
+
+
+/* ==================================================
+NAVEGAÇÃO
+================================================== */
+
+function abrirPagina(
+id,
+botao
+){
+
+document
+.querySelectorAll(".page")
+.forEach(
+p=>p.classList.remove("active")
+);
+
+
+const pagina =
+document.getElementById(id);
+
+
+if(pagina){
+
+pagina.classList.add("active");
+
+}
+
+
+document
+.querySelectorAll("nav button")
+.forEach(
+b=>b.classList.remove("active")
+);
+
+
+if(botao){
+
+botao.classList.add("active");
+
+}
+
+
+renderizarTudo();
+
+}
+
+
+
+/* ==================================================
+DINHEIRO
+================================================== */
+
+function dinheiro(valor){
+
+return Number(valor||0)
+.toLocaleString(
+"pt-BR",
+{
+style:"currency",
+currency:"BRL"
+}
+);
+
+}
+
+
+
+/* ==================================================
+ID
+================================================== */
+
+function idNovo(
+prefixo
+){
+
+return prefixo
++
+"-"
++
+Date.now()
++
+"-"
++
+Math.random()
+.toString(36)
+.substring(2,7);
+
+}
+
+
+
+/* ==================================================
+DATA
+================================================== */
+
+function dataBR(data){
+
+if(!data){
+return "-";
+}
+
+if(
+data.includes("-")
+){
+
+const partes =
+data.split("-");
+
+return partes[2]
++
+"/"
++
+partes[1]
++
+"/"
++
+partes[0];
+
+}
+
+return data;
+
+}
+
+
+
+/* ==================================================
+DATA DE HOJE
+================================================== */
+
+function hoje(){
+
+const d =
+new Date();
+
+return d
+.toISOString()
+.substring(0,10);
+
+}
+
+
+
+/* ==================================================
+BADGE
+================================================== */
+
+function badge(
+status
+){
+
+let classe="";
+
+
+if(
+status==="Pago" ||
+status==="Concluído"
+){
+
+classe="ok";
+
+}
+
+else if(
+status==="Cancelado" ||
+status==="Recusado"
+){
+
+classe="bad";
+
+}
+
+else if(
+status==="Aceito" ||
+status==="Agendado"
+){
+
+classe="blue";
+
+}
+
+else if(
+status==="Em andamento"
+){
+
+classe="purple";
+
+}
+
+else if(
+status==="Aguardando pagamento"
+){
+
+classe="orange";
+
+}
+
+else{
+
+classe="";
+
+}
+
+
+return `
+
+<span
+class="badge ${classe}">
+
+${status||"Pendente"}
+
+</span>
+
+`;
+
+}
+
+
+
+/* ==================================================
+SELECT STATUS
+================================================== */
+
+function selectStatus(
+status,
+funcao,
+id
+){
+
+return `
+
+<select
+class="statusSelect"
+onchange="${funcao}('${id}',this.value)">
+
+${
+STATUS.map(
+s=>`
+
+<option
+value="${s}"
+${s===status?"selected":""}>
+
+${s}
+
+</option>
+
+`
+).join("")
+}
+
+</select>
+
+`;
+
+}
+
+
+
+/* ==================================================
+WHATSAPP
+================================================== */
+
+function telefoneWhats(
+numero
+){
+
+return String(numero||"")
+.replace(/\D/g,"");
+
+}
+
+
+
+function abrirWhatsApp(
+numero,
+nome
+){
+
+const telefone =
+telefoneWhats(numero);
+
+
+if(!telefone){
+
+alert(
+"Este cliente não possui WhatsApp cadastrado."
+);
+
+return;
+
+}
+
+
+const mensagem =
+encodeURIComponent(
+"Olá "+(nome||"")+
+", tudo bem? Aqui é da "+
+(banco.empresa.nome||"nossa empresa")+
+"."
+);
+
+
+window.open(
+"https://wa.me/55"+
+telefone+
+"?text="+
+mensagem,
+"_blank"
+);
+
+}
+
+
+
+/* ==================================================
+CLIENTES
+================================================== */
+
+function novoCliente(){
+
+limparFormCliente();
+
+document
+.getElementById("clienteNome")
+.focus();
+
+}
+
+
+
+function limparFormCliente(){
+
+document
+.getElementById("formCliente")
+.reset();
+
+document
+.getElementById("clienteId")
+.value="";
+
+}
+
+
+
+function salvarCliente(
+event
+){
+
+event.preventDefault();
+
+
+const id =
+document.getElementById(
+"clienteId"
+).value;
+
+
+const dados={
+
+nome:
+document.getElementById(
+"clienteNome"
+).value.trim(),
+
+whatsapp:
+document.getElementById(
+"clienteWhats"
+).value.trim(),
+
+email:
+document.getElementById(
+"clienteEmail"
+).value.trim(),
+
+endereco:
+document.getElementById(
+"clienteEndereco"
+).value.trim()
+
+};
+
+
+if(id){
+
+const cliente =
+banco.clientes.find(
+c=>c.id===id
+);
+
+
+if(cliente){
+
+Object.assign(
+cliente,
+dados
+);
+
+}
+
+}
+else{
+
+banco.clientes.push({
+
+id:idNovo("CLI"),
+
+...dados,
+
+criadoEm:
+new Date().toISOString()
+
+});
+
+}
+
+
+limparFormCliente();
+
+salvarBanco();
+
+
+alert(
+"Cliente salvo com sucesso."
+);
+
+}
+
+
+
+/* ==================================================
+EDITAR CLIENTE
+================================================== */
+
+function editarCliente(
+id
+){
+
+const c =
+banco.clientes.find(
+x=>x.id===id
+);
+
+
+if(!c){
+return;
+}
+
+
+document
+.getElementById("clienteId")
+.value=c.id;
+
+
+document
+.getElementById("clienteNome")
+.value=c.nome||"";
+
+
+document
+.getElementById("clienteWhats")
+.value=c.whatsapp||"";
+
+
+document
+.getElementById("clienteEmail")
+.value=c.email||"";
+
+
+document
+.getElementById("clienteEndereco")
+.value=c.endereco||"";
+
+
+abrirPagina(
+"clientes",
+document.querySelectorAll(
+"nav button"
+)[1]
+);
+
+}
+
+
+
+function excluirCliente(
+id
+){
+
+if(
+!confirm(
+"Excluir este cliente?"
+)
+){
+
+return;
+
+}
+
+
+banco.clientes =
+banco.clientes.filter(
+c=>c.id!==id
+);
+
+
+salvarBanco();
+
+}
+
+
+
+/* ==================================================
+HISTÓRICO CLIENTE
+================================================== */
+
+function abrirHistoricoCliente(
+id
+){
+
+const c =
+banco.clientes.find(
+x=>x.id===id
+);
+
+
+if(!c){
+return;
+}
+
+
+const registros =
+banco.orcamentos.filter(
+o=>
+o.whatsapp===c.whatsapp
+);
+
+
+let html=`
+
+<div class="statBox">
+
+<strong>
+${c.nome}
+</strong>
+
+<div class="muted">
+
+${c.whatsapp||"Sem WhatsApp"}
+
+</div>
+
+</div>
+
+<br>
+
+`;
+
+
+if(!registros.length){
+
+html+=`
+
+<div class="empty">
+
+Nenhum serviço registrado para este cliente.
+
+</div>
+
+`;
+
+}
+else{
+
+html+=registros.map(
+o=>`
+
+<div class="historyItem">
+
+<strong>
+${o.servico}
+</strong>
+
+<br>
+
+${dataBR(o.data)}
+${o.hora?" • "+o.hora:""}
+
+<br>
+
+<strong>
+${dinheiro(o.valor)}
+</strong>
+
+<br>
+
+${badge(o.status)}
+
+</div>
+
+`
+).join("");
+
+}
+
+
+document
+.getElementById(
+"conteudoCliente"
+)
+.innerHTML=html;
+
+
+abrirModal(
+"modalCliente"
+);
+
+}
+
+
+
+/* ==================================================
+NOVA SOLICITAÇÃO
+================================================== */
+
+function novaSolicitacao(){
+
+const nome =
+prompt(
+"Nome do cliente:"
+);
+
+
+if(!nome){
+return;
+}
+
+
+const whatsapp =
+prompt(
+"WhatsApp:"
+);
+
+
+if(!whatsapp){
+return;
+}
+
+
+const servico =
+prompt(
+"Serviço solicitado:",
+"Limpeza residencial"
+);
+
+
+if(!servico){
+return;
+}
+
+
+const valor =
+prompt(
+"Valor do orçamento (R$):",
+"0"
+);
+
+
+const data =
+prompt(
+"Data desejada (AAAA-MM-DD):",
+""
+);
+
+
+const hora =
+prompt(
+"Horário:",
+"08:00"
+);
+
+
+banco.solicitacoes.unshift({
+
+id:idNovo("SOL"),
+
+criadoEm:
+new Date().toISOString(),
+
+nome:nome,
+
+whatsapp:whatsapp,
+
+servico:servico,
+
+valor:
+Number(
+String(valor)
+.replace(",",".")
+)||0,
+
+data:data,
+
+hora:hora,
+
+status:"Pendente"
+
+});
+
+
+let cliente =
+banco.clientes.find(
+c=>c.whatsapp===whatsapp
+);
+
+
+if(!cliente){
+
+banco.clientes.push({
+
+id:idNovo("CLI"),
+
+nome:nome,
+
+whatsapp:whatsapp,
+
+email:"",
+
+endereco:"",
+
+criadoEm:
+new Date().toISOString()
+
+});
+
+}
+
+
+salvarBanco();
+
+
+abrirPagina(
+"solicitacoes",
+document.querySelectorAll(
+"nav button"
+)[2]
+);
+
+}
+
+
+
+/* ==================================================
+CONFIRMAR SOLICITAÇÃO
+================================================== */
+
+function confirmarSolicitacao(
+id
+){
+
+const s =
+banco.solicitacoes.find(
+x=>x.id===id
+);
+
+
+if(!s){
+return;
+}
+
+
+let valor =
+prompt(
+"Valor confirmado:",
+s.valor||0
+);
+
+
+let data =
+prompt(
+"Data confirmada (AAAA-MM-DD):",
+s.data||""
+);
+
+
+if(!data){
+return;
+}
+
+
+let hora =
+prompt(
+"Horário:",
+s.hora||"08:00"
+);
+
+
+s.status="Agendado";
+
+s.valor=
+Number(
+String(valor)
+.replace(",",".")
+)||0;
+
+s.data=data;
+
+s.hora=hora;
+
+
+criarOuAtualizarRelacionados(
+s
+);
+
+
+salvarBanco();
+
+}
+
+
+
+/* ==================================================
+CRIAR/ATUALIZAR ORÇAMENTO E AGENDA
+================================================== */
+
+function criarOuAtualizarRelacionados(
+s
+){
+
+let o =
+banco.orcamentos.find(
+x=>x.solicitacaoId===s.id
+);
+
+
+if(!o){
+
+banco.orcamentos.unshift({
+
+id:idNovo("ORC"),
+
+solicitacaoId:s.id,
+
+cliente:s.nome,
+
+whatsapp:s.whatsapp,
+
+servico:s.servico,
+
+valor:s.valor,
+
+data:s.data,
+
+hora:s.hora,
+
+status:s.status,
+
+criadoEm:
+new Date().toISOString()
+
+});
+
+}
+else{
+
+o.cliente=s.nome;
+
+o.whatsapp=s.whatsapp;
+
+o.servico=s.servico;
+
+o.valor=s.valor;
+
+o.data=s.data;
+
+o.hora=s.hora;
+
+o.status=s.status;
+
+}
+
+
+let a =
+banco.agenda.find(
+x=>x.solicitacaoId===s.id
+);
+
+
+if(!a){
+
+banco.agenda.unshift({
+
+id:idNovo("AGE"),
+
+solicitacaoId:s.id,
+
+cliente:s.nome,
+
+whatsapp:s.whatsapp,
+
+servico:s.servico,
+
+valor:s.valor,
+
+data:s.data,
+
+hora:s.hora,
+
+status:s.status
+
+});
+
+}
+else{
+
+a.cliente=s.nome;
+
+a.whatsapp=s.whatsapp;
+
+a.servico=s.servico;
+
+a.valor=s.valor;
+
+a.data=s.data;
+
+a.hora=s.hora;
+
+a.status=s.status;
+
+}
+
+}
+
+
+
+/* ==================================================
+STATUS SOLICITAÇÃO
+================================================== */
+
+function alterarStatusSolicitacao(
+id,
+novoStatus
+){
+
+const s =
+banco.solicitacoes.find(
+x=>x.id===id
+);
+
+
+if(!s){
+return;
+}
+
+
+s.status=
+novoStatus;
+
+
+if(
+novoStatus==="Aceito" ||
+novoStatus==="Agendado"
+){
+
+criarOuAtualizarRelacionados(
+s
+);
+
+}
+
+
+const o =
+banco.orcamentos.find(
+x=>x.solicitacaoId===id
+);
+
+
+if(o){
+
+o.status=
+novoStatus;
+
+}
+
+
+const a =
+banco.agenda.find(
+x=>x.solicitacaoId===id
+);
+
+
+if(a){
+
+a.status=
+novoStatus;
+
+}
+
+
+salvarBanco();
+
+}
+
+
+
+/* ==================================================
+EDITAR SOLICITAÇÃO
+================================================== */
+
+function editarSolicitacao(
+id
+){
+
+const s =
+banco.solicitacoes.find(
+x=>x.id===id
+);
+
+
+if(!s){
+return;
+}
+
+
+document
+.getElementById(
+"editSolicitacaoId"
+).value=s.id;
+
+
+document
+.getElementById(
+"editNome"
+).value=s.nome||"";
+
+
+document
+.getElementById(
+"editWhats"
+).value=s.whatsapp||"";
+
+
+document
+.getElementById(
+"editServico"
+).value=s.servico||"";
+
+
+document
+.getElementById(
+"editValor"
+).value=s.valor||0;
+
+
+document
+.getElementById(
+"editData"
+).value=s.data||"";
+
+
+document
+.getElementById(
+"editHora"
+).value=s.hora||"";
+
+
+document
+.getElementById(
+"editStatus"
+).innerHTML=
+STATUS.map(
+x=>`
+
+<option
+value="${x}"
+${x===s.status?"selected":""}>
+
+${x}
+
+</option>
+
+`
+).join("");
+
+
+abrirModal(
+"modalSolicitacao"
+);
+
+}
+
+
+
+/* ==================================================
+SALVAR EDIÇÃO
+================================================== */
+
+function salvarEdicaoSolicitacao(
+event
+){
+
+event.preventDefault();
+
+
+const id =
+document
+.getElementById(
+"editSolicitacaoId"
+)
+.value;
+
+
+const s =
+banco.solicitacoes.find(
+x=>x.id===id
+);
+
+
+if(!s){
+return;
+}
+
+
+s.nome=
+document
+.getElementById(
+"editNome"
+)
+.value;
+
+
+s.whatsapp=
+document
+.getElementById(
+"editWhats"
+)
+.value;
+
+
+s.servico=
+document
+.getElementById(
+"editServico"
+)
+.value;
+
+
+s.valor=
+Number(
+document
+.getElementById(
+"editValor"
+)
+.value
+)||0;
+
+
+s.data=
+document
+.getElementById(
+"editData"
+)
+.value;
+
+
+s.hora=
+document
+.getElementById(
+"editHora"
+)
+.value;
+
+
+s.status=
+document
+.getElementById(
+"editStatus"
+)
+.value;
+
+
+if(
+s.status!=="Pendente" &&
+s.status!=="Recusado" &&
+s.status!=="Cancelado"
+){
+
+criarOuAtualizarRelacionados(
+s
+);
+
+}
+
+
+const cliente =
+banco.clientes.find(
+c=>c.whatsapp===s.whatsapp
+);
+
+
+if(!cliente){
+
+banco.clientes.push({
+
+id:idNovo("CLI"),
+
+nome:s.nome,
+
+whatsapp:s.whatsapp,
+
+email:"",
+
+endereco:"",
+
+criadoEm:
+new Date().toISOString()
+
+});
+
+}
+
+
+fecharModal(
+"modalSolicitacao"
+);
+
+
+salvarBanco();
+
+
+alert(
+"Solicitação atualizada."
+);
+
+}
+
+
+
+/* ==================================================
+EXCLUIR SOLICITAÇÃO
+================================================== */
+
+function excluirSolicitacao(
+id
+){
+
+if(
+!confirm(
+"Excluir esta solicitação?"
+)
+){
+
+return;
+
+}
+
+
+banco.solicitacoes =
+banco.solicitacoes.filter(
+x=>x.id!==id
+);
+
+
+salvarBanco();
+
+}
+
+
+
+/* ==================================================
+STATUS ORÇAMENTO
+================================================== */
+
+function alterarStatusOrcamento(
+id,
+novoStatus
+){
+
+const o =
+banco.orcamentos.find(
+x=>x.id===id
+);
+
+
+if(!o){
+return;
+}
+
+
+o.status=
+novoStatus;
+
+
+if(o.solicitacaoId){
+
+const s =
+banco.solicitacoes.find(
+x=>x.id===o.solicitacaoId
+);
+
+
+if(s){
+
+s.status=
+novoStatus;
+
+}
+
+}
+
+
+if(o.solicitacaoId){
+
+const a =
+banco.agenda.find(
+x=>x.solicitacaoId===o.solicitacaoId
+);
+
+
+if(a){
+
+a.status=
+novoStatus;
+
+}
+
+}
+
+
+salvarBanco();
+
+}
+
+
+
+/* ==================================================
+EDITAR ORÇAMENTO
+================================================== */
+
+function editarOrcamento(
+id
+){
+
+const o =
+banco.orcamentos.find(
+x=>x.id===id
+);
+
+
+if(!o){
+return;
+}
+
+
+if(o.solicitacaoId){
+
+editarSolicitacao(
+o.solicitacaoId
+);
+
+return;
+
+}
+
+
+alert(
+"Este orçamento não possui uma solicitação vinculada."
+);
+
+}
+
+
+
+/* ==================================================
+EXCLUIR ORÇAMENTO
+================================================== */
+
+function excluirOrcamento(
+id
+){
+
+if(
+!confirm(
+"Excluir este orçamento?"
+)
+){
+
+return;
+
+}
+
+
+banco.orcamentos =
+banco.orcamentos.filter(
+x=>x.id!==id
+);
+
+
+salvarBanco();
+
+}
+
+
+
+/* ==================================================
+STATUS AGENDA
+================================================== */
+
+function alterarStatusAgenda(
+id,
+novoStatus
+){
+
+const a =
+banco.agenda.find(
+x=>x.id===id
+);
+
+
+if(!a){
+return;
+}
+
+
+a.status=
+novoStatus;
+
+
+if(a.solicitacaoId){
+
+const s =
+banco.solicitacoes.find(
+x=>x.id===a.solicitacaoId
+);
+
+
+if(s){
+
+s.status=
+novoStatus;
+
+}
+
+
+const o =
+banco.orcamentos.find(
+x=>x.solicitacaoId===a.solicitacaoId
+);
+
+
+if(o){
+
+o.status=
+novoStatus;
+
+}
+
+}
+
+
+salvarBanco();
+
+}
+
+
+
+/* ==================================================
+CONFIGURAÇÕES
+================================================== */
+
+function salvarConfiguracoes(){
+
+banco.empresa.nome=
+document
+.getElementById(
+"empresaNome"
+)
+.value;
+
+
+banco.empresa.whatsapp=
+document
+.getElementById(
+"empresaWhats"
+)
+.value;
+
+
+banco.empresa.cidade=
+document
+.getElementById(
+"empresaCidade"
+)
+.value;
+
+
+salvarBanco();
+
+
+alert(
+"Configurações salvas."
+);
+
+}
+
+
+
+/* ==================================================
+BACKUP
+================================================== */
+
+function exportarBackup(){
+
+const dados=
+JSON.stringify(
+banco,
+null,
+2
+);
+
+
+const arquivo=
+new Blob(
+[dados],
+{
+type:
+"application/json"
+}
+);
+
+
+const url=
+URL.createObjectURL(
+arquivo
+);
+
+
+const a=
+document.createElement(
+"a"
+);
+
+
+a.href=url;
+
+a.download=
+"backup-limpeza-pro-v13.json";
+
+a.click();
+
+
+URL.revokeObjectURL(
+url
+);
+
+}
+
+
+
+/* ==================================================
+IMPORTAR BACKUP
+================================================== */
+
+function importarBackup(
+event
+){
+
+const arquivo=
+event.target.files[0];
+
+
+if(!arquivo){
+return;
+}
+
+
+const leitor=
+new FileReader();
+
+
+leitor.onload=
+function(){
+
+try{
+
+const dados=
+JSON.parse(
+leitor.result
+);
+
+
+if(
+!dados.empresa ||
+!dados.clientes ||
+!dados.solicitacoes
+){
+
+throw new Error();
+
+}
+
+
+if(
+confirm(
+"Substituir os dados atuais pelo backup?"
+)
+){
+
+banco=dados;
+
+salvarBanco();
+
+
+alert(
+"Backup restaurado com sucesso."
+);
+
+}
+
+}
+catch{
+
+alert(
+"Arquivo de backup inválido."
+);
+
+}
+
+};
+
+
+leitor.readAsText(
+arquivo
+);
+
+}
+
+
+
+/* ==================================================
+APAGAR DADOS
+================================================== */
+
+function apagarDados(){
+
+if(
+!confirm(
+"ATENÇÃO: todos os dados deste aparelho serão apagados. Continuar?"
+)
+){
+
+return;
+
+}
+
+
+localStorage.removeItem(
+CHAVE
+);
+
+
+location.reload();
+
+}
+
+
+
+/* ==================================================
+MODAIS
+================================================== */
+
+function abrirModal(
+id
+){
+
+document
+.getElementById(id)
+.classList.add("show");
+
+}
+
+
+
+function fecharModal(
+id
+){
+
+document
+.getElementById(id)
+.classList.remove("show");
+
+}
+
+
+
+/* ==================================================
+DASHBOARD
+================================================== */
+
+function renderDashboard(){
+
+let total=
+banco.orcamentos.reduce(
+(t,o)=>
+t+
+Number(o.valor||0),
+0
+);
+
+
+let pago=
+banco.orcamentos
+.filter(
+o=>o.status==="Pago"
+)
+.reduce(
+(t,o)=>
+t+
+Number(o.valor||0),
+0
+);
+
+
+let receber=
+banco.orcamentos
+.filter(
+o=>
+o.status!=="Pago" &&
+o.status!=="Cancelado" &&
+o.status!=="Recusado"
+)
+.reduce(
+(t,o)=>
+t+
+Number(o.valor||0),
+0
+);
+
+
+const pendentes=
+banco.solicitacoes.filter(
+x=>x.status==="Pendente"
+).length;
+
+
+const agendados=
+banco.solicitacoes.filter(
+x=>x.status==="Agendado"
+).length;
+
+
+const andamento=
+banco.solicitacoes.filter(
+x=>x.status==="Em andamento"
+).length;
+
+
+const concluidos=
+banco.solicitacoes.filter(
+x=>x.status==="Concluído"
+).length;
+
+
+document
+.getElementById("kpis")
+.innerHTML=`
+
+<div class="card kpi">
+
+<span>
+Clientes
+</span>
+
+<strong>
+${banco.clientes.length}
+</strong>
+
+</div>
+
+
+<div class="card kpi">
+
+<span>
+Solicitações
+</span>
+
+<strong>
+${banco.solicitacoes.length}
+</strong>
+
+</div>
+
+
+<div class="card kpi">
+
+<span>
+Agendados
+</span>
+
+<strong>
+${agendados}
+</strong>
+
+</div>
+
+
+<div class="card kpi">
+
+<span>
+Em andamento
+</span>
+
+<strong>
+${andamento}
+</strong>
+
+</div>
+
+
+<div class="card kpi">
+
+<span>
+Concluídos
+</span>
+
+<strong>
+${concluidos}
+</strong>
+
+</div>
+
+`;
+
+
+
+/* FLUXO */
+
+document
+.getElementById("fluxoStatus")
+.innerHTML=
+
+STATUS.map(
+status=>{
+
+const quantidade=
+banco.solicitacoes.filter(
+x=>x.status===status
+).length;
+
+
+return `
+
+<div class="statBox">
+
+<span>
+${status}
+</span>
+
+<strong>
+${quantidade}
+</strong>
+
+</div>
+
+`;
+
+}
+).join("");
+
+
+
+/* FINANCEIRO */
+
+document
+.getElementById("financeiro")
+.innerHTML=`
+
+<div class="statBox">
+
+<span>
+Faturamento total
+</span>
+
+<strong>
+${dinheiro(total)}
+</strong>
+
+</div>
+
+
+<div class="statBox">
+
+<span>
+Recebido
+</span>
+
+<strong>
+${dinheiro(pago)}
+</strong>
+
+</div>
+
+
+<div class="statBox">
+
+<span>
+A receber
+</span>
+
+<strong>
+${dinheiro(receber)}
+</strong>
+
+</div>
+
+`;
+
+
+
+/* ATIVIDADE */
+
+const recentes=
+banco.solicitacoes
+.slice(0,5);
+
+
+document
+.getElementById("atividade")
+.innerHTML=
+
+recentes.length
+
+?
+
+recentes.map(
+x=>`
+
+<div class="historyItem">
+
+<strong>
+${x.nome}
+</strong>
+
+<br>
+
+<span class="muted">
+${x.servico}
+</span>
+
+<br>
+
+${dataBR(x.data)}
+
+<br>
+
+${badge(x.status)}
+
+</div>
+
+`
+).join("")
+
+:
+
+`
+
+<div class="empty">
+
+Nenhuma atividade registrada.
+
+</div>
+
+`;
+
+}
+
+
+
+/* ==================================================
+RENDER CLIENTES
+================================================== */
+
+function renderClientes(){
+
+const elemento=
+document
+.getElementById(
+"listaClientes"
+);
+
+
+if(
+!banco.clientes.length
+){
+
+elemento.innerHTML=`
+
+<div class="empty">
+
+Nenhum cliente cadastrado.
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+elemento.innerHTML=`
+
+<div class="tableWrap">
+
+<table>
+
+<tr>
+
+<th>
+Nome
+</th>
+
+<th>
+WhatsApp
+</th>
+
+<th>
+Endereço
+</th>
+
+<th>
+Ações
+</th>
+
+</tr>
+
+
+${
+banco.clientes.map(
+c=>`
+
+<tr>
+
+<td>
+
+<strong>
+${c.nome}
+</strong>
+
+</td>
+
+
+<td>
+
+${c.whatsapp}
+
+</td>
+
+
+<td>
+
+${c.endereco||"-"}
+
+</td>
+
+
+<td>
+
+<div class="actions">
+
+<button
+class="btn whatsapp"
+onclick="abrirWhatsApp('${c.whatsapp}','${String(c.nome).replace(/'/g,"\\'")}')">
+
+WhatsApp
+
+</button>
+
+
+<button
+class="btn info"
+onclick="abrirHistoricoCliente('${c.id}')">
+
+Histórico
+
+</button>
+
+
+<button
+class="btn secondary"
+onclick="editarCliente('${c.id}')">
+
+Editar
+
+</button>
+
+
+<button
+class="btn danger"
+onclick="excluirCliente('${c.id}')">
+
+Excluir
+
+</button>
+
+</div>
+
+</td>
+
+</tr>
+
+`
+).join("")
+}
+
+</table>
+
+</div>
+
+`;
+
+}
+
+
+
+/* ==================================================
+RENDER SOLICITAÇÕES
+================================================== */
+
+function renderSolicitacoes(){
+
+const elemento=
+document
+.getElementById(
+"listaSolicitacoes"
+);
+
+
+if(
+!banco.solicitacoes.length
+){
+
+elemento.innerHTML=`
+
+<div class="empty">
+
+Nenhuma solicitação cadastrada.
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+elemento.innerHTML=`
+
+<div class="tableWrap">
+
+<table>
+
+<tr>
+
+<th>
+Cliente
+</th>
+
+<th>
+Serviço
+</th>
+
+<th>
+Data
+</th>
+
+<th>
+Valor
+</th>
+
+<th>
+Status
+</th>
+
+<th>
+Ações
+</th>
+
+</tr>
+
+
+${
+banco.solicitacoes.map(
+s=>`
+
+<tr>
+
+<td>
+
+<strong>
+${s.nome}
+</strong>
+
+<br>
+
+<span class="small">
+${s.whatsapp}
+</span>
+
+</td>
+
+
+<td>
+
+${s.servico}
+
+</td>
+
+
+<td>
+
+${dataBR(s.data)}
+
+<br>
+
+${s.hora||""}
+
+</td>
+
+
+<td>
+
+<strong>
+${dinheiro(s.valor)}
+</strong>
+
+</td>
+
+
+<td>
+
+${selectStatus(
+s.status,
+"alterarStatusSolicitacao",
+s.id
+)}
+
+<br><br>
+
+${badge(s.status)}
+
+</td>
+
+
+<td>
+
+<div class="actions">
+
+<button
+class="btn info"
+onclick="editarSolicitacao('${s.id}')">
+
+Editar
+
+</button>
+
+
+<button
+class="btn whatsapp"
+onclick="abrirWhatsApp('${s.whatsapp}','${String(s.nome).replace(/'/g,"\\'")}')">
+
+WhatsApp
+
+</button>
+
+
+<button
+class="btn danger"
+onclick="excluirSolicitacao('${s.id}')">
+
+Excluir
+
+</button>
+
+</div>
+
+</td>
+
+</tr>
+
+`
+).join("")
+}
+
+</table>
+
+</div>
+
+`;
+
+}
+
+
+
+/* ==================================================
+RENDER ORÇAMENTOS
+================================================== */
+
+function renderOrcamentos(){
+
+const elemento=
+document
+.getElementById(
+"listaOrcamentos"
+);
+
+
+if(
+!banco.orcamentos.length
+){
+
+elemento.innerHTML=`
+
+<div class="empty">
+
+Nenhum orçamento cadastrado.
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+elemento.innerHTML=`
+
+<div class="tableWrap">
+
+<table>
+
+<tr>
+
+<th>
+Cliente
+</th>
+
+<th>
+Serviço
+</th>
+
+<th>
+Data
+</th>
+
+<th>
+Valor
+</th>
+
+<th>
+Status
+</th>
+
+<th>
+Ações
+</th>
+
+</tr>
+
+
+${
+banco.orcamentos.map(
+o=>`
+
+<tr>
+
+<td>
+
+<strong>
+${o.cliente}
+</strong>
+
+<br>
+
+${o.whatsapp}
+
+</td>
+
+
+<td>
+${o.servico}
+</td>
+
+
+<td>
+
+${dataBR(o.data)}
+
+<br>
+
+${o.hora||""}
+
+</td>
+
+
+<td>
+
+<strong>
+${dinheiro(o.valor)}
+</strong>
+
+</td>
+
+
+<td>
+
+${selectStatus(
+o.status,
+"alterarStatusOrcamento",
+o.id
+)}
+
+<br><br>
+
+${badge(o.status)}
+
+</td>
+
+
+<td>
+
+<div class="actions">
+
+<button
+class="btn info"
+onclick="editarOrcamento('${o.id}')">
+
+Editar
+
+</button>
+
+
+<button
+class="btn whatsapp"
+onclick="abrirWhatsApp('${o.whatsapp}','${String(o.cliente).replace(/'/g,"\\'")}')">
+
+WhatsApp
+
+</button>
+
+
+<button
+class="btn danger"
+onclick="excluirOrcamento('${o.id}')">
+
+Excluir
+
+</button>
+
+</div>
+
+</td>
+
+</tr>
+
+`
+).join("")
+}
+
+</table>
+
+</div>
+
+`;
+
+}
+
+
+
+/* ==================================================
+RENDER AGENDA
+================================================== */
+
+function renderAgenda(){
+
+const elemento=
+document
+.getElementById(
+"listaAgenda"
+);
+
+
+if(
+!banco.agenda.length
+){
+
+elemento.innerHTML=`
+
+<div class="empty">
+
+Agenda vazia.
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+const agenda=
+[...banco.agenda]
+.sort(
+(a,b)=>
+String(a.data||"")
+.localeCompare(
+String(b.data||"")
+)
+);
+
+
+elemento.innerHTML=`
+
+<div class="tableWrap">
+
+<table>
+
+<tr>
+
+<th>
+Data
+</th>
+
+<th>
+Cliente
+</th>
+
+<th>
+Serviço
+</th>
+
+<th>
+Valor
+</th>
+
+<th>
+Status
+</th>
+
+<th>
+Ações
+</th>
+
+</tr>
+
+
+${
+agenda.map(
+a=>{
+
+const ehHoje=
+a.data===hoje();
+
+
+return `
+
+<tr
+class="${ehHoje?"today":""}">
+
+<td>
+
+<strong>
+
+${dataBR(a.data)}
+
+</strong>
+
+<br>
+
+${a.hora||""}
+
+<br>
+
+${
+ehHoje
+?
+badge("Hoje")
+:
+""
+}
+
+</td>
+
+
+<td>
+
+<strong>
+${a.cliente}
+</strong>
+
+<br>
+
+${a.whatsapp||""}
+
+</td>
+
+
+<td>
+${a.servico}
+</td>
+
+
+<td>
+${dinheiro(a.valor)}
+</td>
+
+
+<td>
+
+${selectStatus(
+a.status,
+"alterarStatusAgenda",
+a.id
+)}
+
+<br><br>
+
+${badge(a.status)}
+
+</td>
+
+
+<td>
+
+<div class="actions">
+
+<button
+class="btn whatsapp"
+onclick="abrirWhatsApp('${a.whatsapp}','${String(a.cliente).replace(/'/g,"\\'")}')">
+
+WhatsApp
+
+</button>
+
+</div>
+
+</td>
+
+</tr>
+
+`;
+
+}
+).join("")
+}
+
+</table>
+
+</div>
+
+`;
+
+}
+
+
+
+/* ==================================================
+RENDER CONFIGURAÇÕES
+================================================== */
+
+function renderConfiguracoes(){
+
+document
+.getElementById(
+"empresaNome"
+)
+.value=
+banco.empresa.nome||"";
+
+
+document
+.getElementById(
+"empresaWhats"
+)
+.value=
+banco.empresa.whatsapp||"";
+
+
+document
+.getElementById(
+"empresaCidade"
+)
+.value=
+banco.empresa.cidade||"";
+
+
+document
+.getElementById(
+"planoAtual"
+)
+.innerText=
+banco.empresa.plano||
+"Teste";
+
+
+document
+.getElementById(
+"tituloEmpresa"
+)
+.innerText=
+banco.empresa.nome||
+"Orçamento Limpeza PRO";
+
+}
+
+
+
+/* ==================================================
+RENDER TUDO
+================================================== */
+
+function renderizarTudo(){
+
+renderDashboard();
+
+renderClientes();
+
+renderSolicitacoes();
+
+renderOrcamentos();
+
+renderAgenda();
+
+renderConfiguracoes();
+
+}
+
+
+
+/* ==================================================
+SERVICE WORKER
+================================================== */
+
+if(
+"serviceWorker" in navigator
+){
+
+window.addEventListener(
+"load",
+function(){
+
+navigator.serviceWorker
+.register("sw.js")
+.catch(
+erro=>
+console.log(
+"Service Worker:",
+erro
+)
+);
+
+});
+
+}
+
+
+
+/* ==================================================
+FECHAR MODAL CLICANDO FORA
+================================================== */
+
+window.addEventListener(
+"click",
+function(event){
+
+document
+.querySelectorAll(".modal.show")
+.forEach(
+modal=>{
+
+if(
+event.target===modal
+){
+
+modal.classList.remove(
+"show"
+);
+
+}
+
+}
+);
+
+});
+
+
+
+/* ==================================================
+INICIALIZAÇÃO
+================================================== */
+
+renderizarTudo();
+
+</script>
+
+</body>
+
+</html>
